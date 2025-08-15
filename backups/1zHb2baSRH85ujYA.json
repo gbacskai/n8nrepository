@@ -1,0 +1,1700 @@
+{
+  "createdAt": "2025-08-11T03:55:47.119Z",
+  "updatedAt": "2025-08-15T00:48:03.000Z",
+  "id": "1zHb2baSRH85ujYA",
+  "name": "U workitem with object and blocked",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1136,
+        -1100
+      ],
+      "id": "0b45d5f5-b98c-4d08-8a71-e86151fef833",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_projects",
+          "mode": "list",
+          "cachedResultName": "dm_projects"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "ID_DEVOPS",
+              "condition": "IS NOT NULL"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -912,
+        -1100
+      ],
+      "id": "76092389-2f1b-47be-9188-8cfe3964418a",
+      "name": "select Projects",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_workitems",
+          "mode": "list",
+          "cachedResultName": "dm_workitems"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "PROJECT_ID",
+              "value": "={{ $json.NAME_DEVOPS }}"
+            },
+            {
+              "column": "WORKITEM_TYPE",
+              "value": "Object Creation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -688,
+        -1100
+      ],
+      "id": "9d5b91d0-4d8c-4bd0-b474-7d82e1cf4b45",
+      "name": "Get workitems from Azure Devops",
+      "notesInFlow": false,
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_workitem_comments",
+          "mode": "list",
+          "cachedResultName": "dm_workitem_comments"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "WORKITEM_ID",
+              "value": "={{ $json.WORKITEM_ID }}"
+            }
+          ]
+        },
+        "sort": {
+          "values": [
+            {
+              "column": "ID",
+              "direction": "DESC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        432,
+        -1344
+      ],
+      "id": "0930e66d-35ac-44cf-9cea-1e9928c7267d",
+      "name": "Get workitems comments",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=What object should be picked?\nTitle: {{ $json.COMMENT_TITLE[0] }}\nComment : {{ $json.COMMENT.substring(0, 4000) }} \nObjects to pick: {{ $json.OBJECT }}\n\nreturn a clean json like { \"object_name\" : \"ECM_Object_Name\" }\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1552,
+        -1224
+      ],
+      "id": "146aff02-0205-4dee-aba1-7c75275c2108",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "openai/gpt-oss-20b",
+          "mode": "list",
+          "cachedResultName": "openai/gpt-oss-20b"
+        },
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1560,
+        -1000
+      ],
+      "id": "63c9219a-0108-4866-9c22-e60821d30f86",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "f7w1w21IJI9gIfih",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1104,
+        -1224
+      ],
+      "id": "438038a8-bb7a-4225-8795-3cafb9672009",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "COMMENT"
+            },
+            {
+              "fieldToAggregate": "WORKITEM_ID"
+            },
+            {
+              "fieldToAggregate": "STATE"
+            },
+            {
+              "fieldToAggregate": "COMMENT_TITLE"
+            },
+            {
+              "fieldToAggregate": "PROJECT_ID"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        880,
+        -1344
+      ],
+      "id": "f97073f3-94b5-4e0b-93e2-93bfd1780357",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\n\nfor (const item of $input.all()) {\n  item.json.COMMENT = \n      item.json.COMMENT = \n    //\"Project id:\" + $('Loop Over workitems').item.json.PROJECT_ID + ' - ' +\n    //\"Modified date:\" + (item.json.MODIFIED_DATE || '').toString() + ' - ' +\n    //\"Created by:\"+ item.json.CREATED_BY + ' - ' +\n    \"Comment:\"+ htmlToText(((item.json.TEXT || '').replace(/&nbsp;/g, '') || '').replace(/\\n/g, ' ')) ;\n  item.json.WORKITEM_ID = $('Loop Over workitems').item.json.WORKITEM_ID\n  item.json.STATE = $('Loop Over workitems').item.json.STATE\n  item.json.COMMENT_TITLE = $('Loop Over workitems').item.json.TITLE\n  item.json.PROJECT_ID = $('Loop Over workitems').item.json.PROJECT_ID\n}\n\nreturn $input.all();\n\nfunction htmlToText(html) {\n  if(html) {return html.replace(/<[^>]*>/g, '');\n           } else { return '' }\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        656,
+        -1344
+      ],
+      "id": "9cc48d2e-718d-44b3-ba4c-c3aa442159bd",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "OBJECT"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        880,
+        -1028
+      ],
+      "id": "1eff8d3b-3d6c-4e7f-814e-44c46c0af933",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.COMMENT = item.json.ID + item.json.GROUP + ' ' + item.json.DESCRIPTION + ' ' + item.json.OBJECT;\n  item.json.PROJECT_ID = $('Loop Over workitems').item.json.PROJECT_ID\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        656,
+        -1028
+      ],
+      "id": "cdb84960-c1e2-4f61-ab99-c1a3b2c0b67a",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "jsCode": "\nfunction extractJsonSimple(text) {\n  const jsonRegex = /(\\{[^}{]*\\}|\\[[^\\[\\]]*\\])/g;\n  const matches = text.match(jsonRegex) || [];\n  \n  return matches\n    .map(match => {\n      try {\n        return JSON.parse(match);\n      } catch (e) {\n        return null;\n      }\n    })\n    .filter(Boolean);\n}\n\n\nvar text = extractJsonSimple($input.item.json.output)\n\nvar arr = { \n  WORKITEM_ID : $('Merge1').first().json.WORKITEM_ID[0],\n  comment : $input.item.json.output,\n  object_name : text[0].object_name,\n  COMMENTS : $('Merge1').item.json.COMMENT.join('\\n')\n  \n}\n\n//arr = extractJsonSimple($json.output)\n\n\nreturn arr;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1904,
+        -1224
+      ],
+      "id": "d1123620-5fbf-410b-b259-e8ff613773d7",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -16,
+        -1100
+      ],
+      "id": "8c1ed890-f290-4d1b-bb07-bce59a772b42",
+      "name": "Loop Over workitems"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_workitems",
+          "mode": "list",
+          "cachedResultName": "dm_workitems"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "WORKITEM_ID": "={{ $('Merge1').item.json.WORKITEM_ID[0] }}",
+            "OBJECT": "={{ $json.object_name }}"
+          },
+          "matchingColumns": [
+            "WORKITEM_ID"
+          ],
+          "schema": [
+            {
+              "id": "WORKITEM_ID",
+              "displayName": "WORKITEM_ID",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TITLE",
+              "displayName": "TITLE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "PROJECT_ID",
+              "displayName": "PROJECT_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "STATE",
+              "displayName": "STATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "REASON",
+              "displayName": "REASON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "WORKITEM_TYPE",
+              "displayName": "WORKITEM_TYPE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "OBJECTGROUP",
+              "displayName": "OBJECTGROUP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "TASKTRACKER",
+              "displayName": "TASKTRACKER",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "STARTEGY_COMPLETED",
+              "displayName": "STARTEGY_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "POM_COMPLETED",
+              "displayName": "POM_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "MOM_COMPLETED",
+              "displayName": "MOM_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "WOM_AUTO",
+              "displayName": "WOM_AUTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "DM_PACKAGE_COMPLETED",
+              "displayName": "DM_PACKAGE_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "NON_SG3_CODING_COMPLETED",
+              "displayName": "NON_SG3_CODING_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "WOM_AUTO_ENABLED",
+              "displayName": "WOM_AUTO_ENABLED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "OBJECT_COMPLETION_DUE_DATE",
+              "displayName": "OBJECT_COMPLETION_DUE_DATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CURRENT_WOM_STEP",
+              "displayName": "CURRENT_WOM_STEP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "COMPANY",
+              "displayName": "COMPANY",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "OBJECT",
+              "displayName": "OBJECT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2928,
+        -976
+      ],
+      "id": "50943a5f-c284-4890-8f54-77b1b15bed11",
+      "name": "Get workitems from Azure Devops1",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_wom",
+          "mode": "list",
+          "cachedResultName": "dm_wom"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "LE",
+              "value": "={{ $json.ID }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        432,
+        -1028
+      ],
+      "id": "945de038-3657-4251-9495-62c34f2dd5cb",
+      "name": "Get WOM Objects",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3a14fb73-2319-4779-861b-c61d4d0e0d2b",
+              "leftValue": "={{ $json.WORKITEM_TYPE }}",
+              "rightValue": "Object Creation",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "3150b9b2-4dd4-4497-b8a0-568f3a13f302",
+              "leftValue": "={{ $json.WORKITEM_TYPE }}",
+              "rightValue": "Issue",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -240,
+        -1100
+      ],
+      "id": "5263d425-3676-4ada-8737-65dce15abdf3",
+      "name": "Object Creation or Issue"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_projects",
+          "mode": "list",
+          "cachedResultName": "dm_projects"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "NAME_DEVOPS",
+              "value": "={{ $json.PROJECT_ID }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        208,
+        -1028
+      ],
+      "id": "6f564a4a-94a5-4a74-bbf8-7efb9d26d745",
+      "name": "select Projects1",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7eb111de-dc6d-4293-b46e-45524e8420aa",
+              "leftValue": "={{ $('Aggregate').item.json.STATE[0] }}",
+              "rightValue": "Blocked",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        2128,
+        -1224
+      ],
+      "id": "da5ccc92-640f-4cfd-8a47-f554fe9ba56e",
+      "name": "Blocked"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Let me know why the object blocked \nHere is the comment history:\n-----\n{{ $('Code2').item.json.COMMENTS }}\n-----\nMaximun lenght of block_reason is 100 characters in the json.\n\nreturn a clean json like { \"block_reason\" : \"Whatever comes here\" }\n\nExample answers:\n\"Waiting for source refresh.\"\n\"Unable to determine the specific reason for blocking.\"",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        2352,
+        -1224
+      ],
+      "id": "ca464239-2d32-42aa-a286-c0392737f51f",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "openai/gpt-oss-20b",
+          "mode": "list",
+          "cachedResultName": "openai/gpt-oss-20b"
+        },
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2424,
+        -1000
+      ],
+      "id": "660ed016-d375-4e51-b1c4-425168a11e91",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "f7w1w21IJI9gIfih",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_workitems",
+          "mode": "list",
+          "cachedResultName": "dm_workitems"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "WORKITEM_ID": "={{ $('Merge1').item.json.WORKITEM_ID[0] }}",
+            "BLOCK_REASON": "={{ $json.block_reason }}"
+          },
+          "matchingColumns": [
+            "WORKITEM_ID"
+          ],
+          "schema": [
+            {
+              "id": "WORKITEM_ID",
+              "displayName": "WORKITEM_ID",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TITLE",
+              "displayName": "TITLE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "PROJECT_ID",
+              "displayName": "PROJECT_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "STATE",
+              "displayName": "STATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "REASON",
+              "displayName": "REASON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "WORKITEM_TYPE",
+              "displayName": "WORKITEM_TYPE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "OBJECTGROUP",
+              "displayName": "OBJECTGROUP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "TASKTRACKER",
+              "displayName": "TASKTRACKER",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "STARTEGY_COMPLETED",
+              "displayName": "STARTEGY_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "POM_COMPLETED",
+              "displayName": "POM_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "MOM_COMPLETED",
+              "displayName": "MOM_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "WOM_AUTO",
+              "displayName": "WOM_AUTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "DM_PACKAGE_COMPLETED",
+              "displayName": "DM_PACKAGE_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "NON_SG3_CODING_COMPLETED",
+              "displayName": "NON_SG3_CODING_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "WOM_AUTO_ENABLED",
+              "displayName": "WOM_AUTO_ENABLED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "OBJECT_COMPLETION_DUE_DATE",
+              "displayName": "OBJECT_COMPLETION_DUE_DATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CURRENT_WOM_STEP",
+              "displayName": "CURRENT_WOM_STEP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "OBJECT",
+              "displayName": "OBJECT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "BLOCK_REASON",
+              "displayName": "BLOCK_REASON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2928,
+        -1224
+      ],
+      "id": "b9577d29-78a6-4216-9bdc-94621072a84f",
+      "name": "Get workitems from Azure Devops2",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "\nfunction extractJsonSimple(text) {\n  const jsonRegex = /(\\{[^}{]*\\}|\\[[^\\[\\]]*\\])/g;\n  const matches = text.match(jsonRegex) || [];\n  \n  return matches\n    .map(match => {\n      try {\n        return JSON.parse(match);\n      } catch (e) {\n        return null;\n      }\n    })\n    .filter(Boolean);\n}\n\n\n\nlet arr = extractJsonSimple($json.output)\n\nreturn arr;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2704,
+        -1224
+      ],
+      "id": "b8649d34-8b3f-458a-8078-f74a752ab40c",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3152,
+        -1152
+      ],
+      "id": "eab59f09-c15e-4370-be8a-afbf59ee3674",
+      "name": "Code4"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_workitems",
+          "mode": "list",
+          "cachedResultName": "dm_workitems"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "WORKITEM_ID": "={{ $('Merge1').item.json.WORKITEM_ID[0] }}",
+            "BLOCK_REASON": "=NULL"
+          },
+          "matchingColumns": [
+            "WORKITEM_ID"
+          ],
+          "schema": [
+            {
+              "id": "WORKITEM_ID",
+              "displayName": "WORKITEM_ID",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TITLE",
+              "displayName": "TITLE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "PROJECT_ID",
+              "displayName": "PROJECT_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "STATE",
+              "displayName": "STATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "REASON",
+              "displayName": "REASON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "WORKITEM_TYPE",
+              "displayName": "WORKITEM_TYPE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "OBJECTGROUP",
+              "displayName": "OBJECTGROUP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "TASKTRACKER",
+              "displayName": "TASKTRACKER",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "STARTEGY_COMPLETED",
+              "displayName": "STARTEGY_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "POM_COMPLETED",
+              "displayName": "POM_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "MOM_COMPLETED",
+              "displayName": "MOM_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "WOM_AUTO",
+              "displayName": "WOM_AUTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "DM_PACKAGE_COMPLETED",
+              "displayName": "DM_PACKAGE_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "NON_SG3_CODING_COMPLETED",
+              "displayName": "NON_SG3_CODING_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "WOM_AUTO_ENABLED",
+              "displayName": "WOM_AUTO_ENABLED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "OBJECT_COMPLETION_DUE_DATE",
+              "displayName": "OBJECT_COMPLETION_DUE_DATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CURRENT_WOM_STEP",
+              "displayName": "CURRENT_WOM_STEP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "OBJECT",
+              "displayName": "OBJECT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "BLOCK_REASON",
+              "displayName": "BLOCK_REASON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2928,
+        -1472
+      ],
+      "id": "45077d70-144d-4c2e-9725-764a7e0e9433",
+      "name": "Get workitems from Azure Devops3",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7eb111de-dc6d-4293-b46e-45524e8420aa",
+              "leftValue": "={{ $('Aggregate').item.json.STATE[0] }}",
+              "rightValue": "Blocked",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        2704,
+        -1472
+      ],
+      "id": "57848085-c2d9-4865-8863-fc06f31082ab",
+      "name": "Not Blocked"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3a14fb73-2319-4779-861b-c61d4d0e0d2b",
+              "leftValue": "={{ $json.WORKITEM_ID }}",
+              "rightValue": "5636",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -464,
+        -1100
+      ],
+      "id": "b9819709-f4b2-4f88-9b12-4adb387d785c",
+      "name": "Debug",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "tableName": "n8n.n8n_chat_histories"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1688,
+        -1000
+      ],
+      "id": "7d6144d9-ec3a-4652-8e55-b5d9bf9e504c",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.sessionId = $input.item.json.PROJECT_ID;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1328,
+        -1224
+      ],
+      "id": "5688aac0-2b5c-456f-8b5c-a17191660a7d",
+      "name": "dessionId"
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "select Projects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "select Projects": {
+      "main": [
+        [
+          {
+            "node": "Get workitems from Azure Devops",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get workitems from Azure Devops": {
+      "main": [
+        [
+          {
+            "node": "Debug",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get workitems comments": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "dessionId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Get workitems from Azure Devops1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Blocked",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Not Blocked",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over workitems": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Get workitems comments",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "select Projects1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get workitems from Azure Devops1": {
+      "main": [
+        [
+          {
+            "node": "Code4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get WOM Objects": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Object Creation or Issue": {
+      "main": [
+        [
+          {
+            "node": "Loop Over workitems",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "select Projects1": {
+      "main": [
+        [
+          {
+            "node": "Get WOM Objects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Blocked": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "Get workitems from Azure Devops2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get workitems from Azure Devops2": {
+      "main": [
+        [
+          {
+            "node": "Code4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code4": {
+      "main": [
+        [
+          {
+            "node": "Loop Over workitems",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get workitems from Azure Devops3": {
+      "main": [
+        [
+          {
+            "node": "Code4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Not Blocked": {
+      "main": [
+        [
+          {
+            "node": "Get workitems from Azure Devops3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Debug": {
+      "main": [
+        [
+          {
+            "node": "Object Creation or Issue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "dessionId": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "c5758e6e-76b9-4076-b925-fa0841cba038",
+  "triggerCount": 0,
+  "tags": [
+    {
+      "createdAt": "2025-08-12T00:28:29.158Z",
+      "updatedAt": "2025-08-12T00:28:29.158Z",
+      "id": "NhKI3ivF74Mn13JL",
+      "name": "datamc"
+    }
+  ]
+}

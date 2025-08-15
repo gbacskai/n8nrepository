@@ -1,0 +1,273 @@
+{
+  "createdAt": "2025-08-15T02:01:19.755Z",
+  "updatedAt": "2025-08-15T07:52:00.000Z",
+  "id": "jZfKwGRCsAeJn3xE",
+  "name": "My workflow 2",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        -128
+      ],
+      "id": "811b3dd5-0677-480c-be52-a5ed5ae4609b",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/gbacs/apps/srt-merge/src/recording.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        -128
+      ],
+      "id": "db670223-4921-45c3-9f52-d17f428bc93c",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        -128
+      ],
+      "id": "08fedde4-cbe2-4f3f-996c-0e540e0fff25",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        160,
+        -128
+      ],
+      "id": "eb99aca0-e7af-4182-a912-d82a3d1ae756",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "text"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        368,
+        -128
+      ],
+      "id": "f835db69-3fe0-4fbd-985b-5eedd75041a7",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "options": {
+          "systemMessage": "You summarize the meeting transcript to Markdown"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        576,
+        -128
+      ],
+      "id": "63bb7d4e-9717-4d1c-a88c-9742eba1da2a",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "openai/gpt-oss-20b",
+          "mode": "list",
+          "cachedResultName": "openai/gpt-oss-20b"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        80
+      ],
+      "id": "e33598e2-a409-4b9e-a1d9-c92ef2ba7934",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "f7w1w21IJI9gIfih",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "784325048093505",
+        "recipientPhoneNumber": "61449598795",
+        "textBody": "asdasd",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1152,
+        -128
+      ],
+      "id": "d2a111b2-052c-4ab0-9279-cb76965d3bb2",
+      "name": "Send message",
+      "webhookId": "9ac6a481-be85-4fd5-a7b5-af2ecdb260cb",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "A5PUHddkHCw6TFGL",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        928,
+        -128
+      ],
+      "id": "1c4f596a-a982-40d7-b7fb-ab2ad6876397",
+      "name": "Markdown"
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "Send message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {
+    "AI Agent": [
+      {
+        "json": {
+          "output": "# Meeting Summary – Project Update & Next Steps\n\n| Item | Summary |\n|------|---------|\n| **Current Project Status** | • Project still on a February go‑live window as per PCG.<br>• Initial July target shifted; no firm date yet because milestones (build, test, data migration) are still being hit. |\n| **Build & Test** | • Compliance applications: ~100 total, 10 built, 45 priority.<br>• Remaining work focuses on building and testing these compliance apps. |\n| **Data Migration** | • Largest outstanding task – especially for transaction data.<br>• Concerns from CFO about complexity and length of migration.<br>• Need clarity on load‑file configuration; possible missing “second load folder.”<br>• Requests: early next week update on migration status, mapping of code values, and explanation of any load issues. |\n| **Configuration** | • Transaction config considered complete for months.<br>• Any changes during migration need to be locked in the config master; change‑freeze dates to be defined. |\n| **UAT Plan** | • UAT1: initial assessment (dates TBD).<br>• UAT2: pre‑final test.<br>• UAT3: full dress rehearsal of data migration and final testing. <br>• Exact schedule still being worked out; will align with key events. |\n| **Escalation & Support** | • Rohit, Kirsten, and the team are overwhelmed with questions; escalation to Tech One (direct contact) is recommended.<br>• Project leads should chase transaction‑related inquiries from their side. |\n| **Parallel Writes & Reconciliation** | • Business happy with parallel writes – reconciliation successful for first run.<br>• Second run also completed successfully. |\n| **Next Actions** | 1. **Send written update** on the new February schedule (by end of week).<br>2. **Provide migration status** and explain load‑file concerns early next week.<br>3. **Define change‑freeze dates** for data migration/configuration.<br>4. **Adjust variation to cover hyper‑care period** (PM time + cloud hosting) as needed.<br>5. **Escalate unresolved transaction questions** to Tech One or relevant experts. |\n| **Key Contacts** | • Kylie – escalations at the beginning of the week.<br>• Rahithra – frequent queries; needs support from tech leads.<br>• Kirsten – overloaded with questions; may need additional help. |\n\n---\n\n### Action Items (Assigned)\n\n| Owner | Task | Deadline |\n|-------|------|----------|\n| Project Lead | Draft and send written update on February schedule | End of week |\n| Data Migration Team | Early next‑week status report & load‑file explanation | Monday |\n| Configuration Manager | Set change‑freeze dates; confirm config lock | Tuesday |\n| Escalation Lead | Coordinate with Tech One for transaction queries | As needed |\n\n---\n\n**Next Meeting:** Early next week (date to be confirmed via email).  \nPlease let me know if anything needs clarification or further detail."
+        }
+      }
+    ]
+  },
+  "versionId": "76315a3f-6064-456a-93b6-7f4d66ea4fe4",
+  "triggerCount": 0,
+  "tags": []
+}

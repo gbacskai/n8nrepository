@@ -1,0 +1,140 @@
+{
+  "createdAt": "2025-08-08T14:05:34.172Z",
+  "updatedAt": "2025-08-08T14:05:34.172Z",
+  "id": "g1iTx7mYtfHsWBle",
+  "name": "Project Details",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "database",
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_projects",
+          "mode": "list",
+          "cachedResultName": "dm_projects"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "NAME_PROJECTWORKS": "={{ $json.data_name }}",
+            "ID_PROJECTWORKS": "={{ $json.data_id }}",
+            "PROJECT_NAME": "={{ $json.data_name }}"
+          },
+          "matchingColumns": [
+            "ID_PROJECTWORKS"
+          ],
+          "schema": [
+            {
+              "id": "PROJECT_NAME",
+              "displayName": "PROJECT_NAME",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NAME_PROJECTWORKS",
+              "displayName": "NAME_PROJECTWORKS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "ID_PROJECTWORKS",
+              "displayName": "ID_PROJECTWORKS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1936,
+        -16
+      ],
+      "id": "0d91b2ec-0b15-42f5-8c24-2ba2fe13dfed",
+      "name": "Insert or update rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      },
+      "issues": {}
+    },
+    {
+      "id": "f993dd05-9421-4d16-8327-b670590d97eb",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        1728,
+        -16
+      ],
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "data_name",
+              "type": "any"
+            },
+            {
+              "name": "data_id",
+              "type": "any"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Insert or update rows in a table": {
+      "main": [
+        []
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "b2cd3ed9-f425-45cd-823d-a42fc5c13398",
+  "triggerCount": 0,
+  "tags": []
+}

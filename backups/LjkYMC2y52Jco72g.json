@@ -1,0 +1,3224 @@
+{
+  "createdAt": "2025-08-08T00:55:50.812Z",
+  "updatedAt": "2025-08-14T02:37:10.000Z",
+  "id": "LjkYMC2y52Jco72g",
+  "name": "DataMC Project Info collection",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f07b5ab5-00b0-4c0f-9dd6-674a69b462b1",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        -96,
+        720
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.DMREVOLVE_URL }}/login/api/firstfactor",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Host",
+              "value": "={{ $json.DMREVOLVE_URL.split('/')[2].split(':')[0] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"username\": \"gergob\",\n    \"password\": \"M@ciL@ci77\",\n    \"keepMeLoggedIn\": false,\n    \"targetURL\": \"{{ $json.DMREVOLVE_URL }}\",\n    \"requestMethod\": null\n}",
+        "options": {
+          "allowUnauthorizedCerts": true,
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          },
+          "timeout": 1000
+        }
+      },
+      "id": "bb5aa304-1c7d-4535-9140-0fce65b16021",
+      "name": "Login to DMRevolve",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        576,
+        1248
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.body.data.redirect }}/rom/getsummary?db=QA",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Cookie",
+              "value": "={{ $json.headers['set-cookie'][0] }}"
+            },
+            {
+              "name": "Host",
+              "value": "={{ $json.body.data.redirect.split('/')[2].split(':')[0] }}"
+            }
+          ]
+        },
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "203a547d-aad5-415f-a0a0-fb490046c415",
+      "name": "get ROM",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        800,
+        1056
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "jsCode": "const worklfowStaticData = $getWorkflowStaticData('global')\nworklfowStaticData.ProjectWorksCookie = \"$$A_U_ID=c8b77f7d-2884-4830-8393-4eb9427a64df; TiPMix=8.223556721272885; x-ms-routing-name=self; pws=CfDJ8PByodJIE6BLt528%2F9yXbQ0BDWN8dYPfW7s6rStHNWtimxet1a0GWTl%2B92TSdx5zrBX7rDZ%2BgtYZ0mp4FLNpIG2YfSotMMvawbtyzcOpF6WGAbI5mXG1rxkHswCyjZv%2FRDgmaSh1hd0WO6SRhbJDLHaBNGtoA1hPhRGXxA%2BDksHP; ARRAffinity=3bf8829b4314cc88291bac4130bb39f2498ea1af76e709ccc5192f2a63139759; ARRAffinitySameSite=3bf8829b4314cc88291bac4130bb39f2498ea1af76e709ccc5192f2a63139759; TiPMix=24.399584671406515; x-ms-routing-name=self; Identity.External=chunks-2; Identity.ExternalC1=CfDJ8PByodJIE6BLt528_9yXbQ3VLDuwjnlLI0j51dZJwvMMK9nFMqK8bset9Rc9Y2uqRd3_s_mGLHR3sdmiZo1mOYlIZofSl7C3Nd9RV4-jAfUBD478Byrk2e4st3GxSbvHsNEAPXFYxSGAbTCdPHkxYcAdDFOlk73Y3oHs5dzFHUIBN44Knt2L6hU20zGiMfydOSeV0VYXKfGlgngzW6Py-SWhwer93l2vMUdJEa3GgA-Um0e7JdCin5iJgIFKvxbj_xmBz2xeirAVUnvhP7kJSqNmWNA_i-q49fVXnN-c8XvKjpcph6I85eQ7SXRddtVgCvq1hKq5cO7rE6aHwQi8RGMfljGTKNkmXqFXsINKa9-pEz2CDYgic6adBKy3nZGXYUO_Nsfs11OPYhqiRr3NkBae2055614zgSfRhSVQw8Z4Sj0_nR924r0jGhHIOtEGEKiMLtd0GF0K990mtzSNYW6gQD0ve5KaAXnCiCsWdoCz4oxc0ho-E89Z1dXBz3-xPq3Y5X4f59evu4jDCvssYhVRZYtgzXy86t5iEA8lhzcP0TYXkCjRUfxLPGjLfFb8iwqg7bRavYLdaeLiw7k59DgD99U__iqwGoV1u5L136Se3fxafpvs2Yak0YfqmdEZLsGG2tNo3u26rDjHHhnZeJFpeLv7_obcx24Zizs7v_Me7ST1HeQU5Ao13A82ReH7VxPzgRCuAlOOpcvAtNHGEyvHuQR0Zb6P0Kn9C4Zaj4xNA-LMKnJyRTuLi7P4jP1CwFmfeq_fSZgkx21cm2fu8CwXyi4av29zBMJbXGWBrUEn3NvGYuyGOMCDKWcX8JFQHHPOLiMw-FmQEwEETVBsqBdNc6yzKmY2vUA0R9gJUWncAg1J_7D4eyOStf4kWzJCF3l_QsoUekgLuOmLZwEi5nWcBxi-UmPF8a4FohYqzOMLkZhGLaFopdGQ2zxsCoCKyIp4lIHjXXPrVcW0_69htnQYMG7KlVLzknyLbbv9XRCEW8KvPesf5m-OynqYkIXIP_t_FJzaaZnJ7KO30sDoNT4E6HrKl_0xVr9LZMmEtHz4M3UodiJeSR3M2K1MIAHxmkoKVKrqBm6_9HOGNYolqfJ7V4X4s_nSltXu4T5zfA5K1XKbLbnFj_tj9nVPoagcOCMCURDAx-ubigNloecOjMFrCMDBx1NJmiB7ya4VTn2HOkH6rN5kRxvLVJAMMsUUKO7MPePI_A_fP7fH5Fq0RahyYmGDIu1Nh4etIx11z6QAHBun7RDUpV3zPzDpzQhcsy9d7L9BfCggmyvsHw7vmsG0DGBBwjqSW_3jFM1OAltRMG05fJFSaoB18Y79stnwz54-HrdwFVvg_EDBa6F4zd22aT8pNBR6noITKoye5HCWKNDTKgB8XfghVczQPQAN0G3WycGs_X2VtYjLIbF87krbhrkNuKirlyiTmwrxiVW_f-VGba8pe8OgiAkV4ZGvF5MVgZpqCRGhVEsosDm3I4Ojsz9gorG087K7l2N9QZepAO2iP_uWD3_qFC9mFapxDo8_zNK0Ve6C9fSDh7jvoiVFeIcDofG6OhAheaffVU_4mzxOEcuDAyTtscxH4XrUC_RT57GAgojyTYYmuSBuMLjFvpVhmkx4lquB89e_izv9eKhI4IENOAwKxgVqlD9NVsfmQuQuDvme-s68tzWJN1TwxgtlOCBjqbXVasIGDlYvCGowRG7k3-a2DqKAw1Fwt2HCf024QIZe54V8yfi6Y_-wZC7DFf-dm9XvOGiYmh4h8vWg3iDP9ny6OQ-rZHbauBYdY8fALFuVQGkjZfJRIPC1w1DONBQojX4mHa_wY8RMAdfU17Ud4T7RQD5iDde_BH5LTw4TPQyjR2NsMZ0d9-_PU1KwLVzZ9jBcZ8DzyZRfveeXvVXvvqGyYS-zL5S4KJVnjL5-HP7MMuie4GhDaNLl3rXGalXj7sYzldhJy1QoxkdynMAnPquOznt53uRYunsbK_9jRGhP10ADAv2Q3ti6y9Gds33ZGhHdHRoH1io15IsWjQY9vgXijnDQGBnv7_CNTPcmVeyZd-X1ShBguQMAJhKkU7h7jFY-T19WvlTO5zr0ZbpIbGkxD0JRjIoGjt0vhq9WpFgfzvavMfhGUa0wZJ4DbC4tRn19MiPQVAaOnYDafkbfAhb54RlxFEgrt5IF2lhrCVTzhAvJ4gjn3lbR8LJzIqEXQnVP1BzciY3L3v9055NtNIOzQXDT47DYRtFzEhdx3b9OXEaPaq3MlgQSBIEHpoR5NoUQrQgky2nZBLBfYXLJ2rpfuHrV32eB6a8VvqimMjgULvrOcVWbGbndWmxQbID3gaKzIy8-Cnv3Fm4feplcKEmvWzUD9n5NB-rTLFytbdo0cQ8gqtcvnX9sfYyGZJjxao5IHeyelvwbjMC5SyLbSP3FFI52RqSqnDoANGQvTFFEWLDR-r8eYkv_Qt9MSMYBpcLOliRjoZTFlHgU47nEmZgVAw0Y_OfvS141V6n0xJ5bcpFGGWB63XNwGSM4Es2CmooVkK1BG7hdzgbjORDOwg1WoNXr8cq_f0Ek8XASjaZ3MeJAwPgnbld9oroK5JsduRjwpXta3nUz1lyEWcN7oWm0etEeeVe4G3YihMvTICK1Rk8o59slEF9h7728Cl27e6wwSJWOZpjvp_C4M29GmdgrYMdfyyosyhZjHm6smYKwQs8yOO1iseOev0ydibnEHpAaFA_c1wZzP745UGk5JJ4yxx7--7s1IR4zAg8tU0vQL019zugWwscYO-TfIroHA49uKFhKqbYvZ4-5C_UkQByvfy8ftXSVlU_hr1XBOe6YirWA_CsdIRXMeOQpVRCLf7doEBfecJeaDvuFjvJCJtvkMs1HbakBtmNwSavprcLZzbeZyeYIJhN_kVILOwdhr6fqHYFZ3xaEw-v1vYly_Kcx7B6FFYWUjwlP868cCATDDpYbzpmW6gx4yfahtjnhjAiH9_gXUgb2gOeDdxuKqj_qcHnZJe3aw15y9eaTFkyV0rzs-Pa_ByvE6nbCPrJTK8oILOkah5BPx2O1b9cQ1pWzCI24tcmtD8LeYBl-l-oGSLpUBZtQJrAefacoX-CwxBf9ehA7AMLPoijJyDT8yJc66s5A9syl1seKxgslYjKzamdJjf8PpSIbmX1qElvRsORGxwq-iHlUe-dKoWMiqGTSz6ZknrHDsGIFVF2Ve9kBmoUTixRHrVXzRYJGpPvigDQP6G5SrC7tnE-7AnZEDyvQpikB0v0gER4fpJgG6_k4VNtjrtl7h3Zk1JOYsLGIQ0PIkgNXgZg9PQzw7vxuSuAjIxcN4DcHqyMqXGjyEpU1tj5AQUQDYzj3ObxhaFkuRJGVk7tRl0amw96dzb830bvOpGIvEDkNNE-0tONH-yjjGnUF0eemqcUkyrCpfGAZRx7LEJh3IPEULlLXOorxFUYU161qQ8AsyVeCGRAWYOdw2xYq0mKlVLQ7zTfMPrwaHrMoWk_tTrsVKoXFwUiaonJWOiVoX35YibOQhmtaT4TUSwb3Tu3vO1zp-lqP1RQFVtGvtF-CY9fOkNnbRbd9Fc0_2k90ggzoEOdxr75XifB8tUSild5y_QZdfYcuqsofy_EPFQ7HvoxFtwU2somnhCOGK2r0R-QIgNXbwR0n-XxkVmkX150chXRBO9RHO6-wfaqYK1YNFZc76vScTRXJ9Q_rujOSNYZzCsPmo1fiPMkUpM1I4AqqqC-JQBGpkTAmg_hElG6Nth_wUa-j5Oa72dq-WMGpfvc_oEpdJ-KUmLGIhR_b9pCRH25Dqy5xScWskCTIV2W0i4DBoUBdg2ytSG4uYO8ChvSLoPlyIGLRnCBu-spcRalzJ5XN8G6eh8tICG8qq6RLip0XorBO3fNvnkTkI3ZiWMgIwG82QLhBMHYL5VwWQ5nw-HMYp8Dm5SW0aUF7fexsPpLz6d98ONam2; Identity.ExternalC2=WNraHXHoZCUfA; ARRAffinity=f402ed00886c6f0108d0d45475f30c4450fd71385d2cd70a4c2038470204e750; ARRAffinitySameSite=f402ed00886c6f0108d0d45475f30c4450fd71385d2cd70a4c2038470204e750; pwa=CfDJ8PByodJIE6BLt528_9yXbQ3nX4y-CYGJEPUNS9rd79Ew4DM_MJM2OrUHNu44C5-iEkJl7q4AXoO-0MfwdfxW91-9ywG0o1AHmIR3eTjQBA6Vu7ZSJMim_482DOzvObsofIT-skIA4YTbVieedklrBYzCGQ7-Stdm9p90Vci-8Q10Vhc5rNqOKGCEfX5H4fZfU6NDbftIzN-T56bzuZw-7uf3oh9Dq33Og42svUNdyrLBHICxGbahR8Q_KRVvze33qKO-TrbuawBBd1hJb4S7vCHKnO39htTQDonaxcz8_wroH6yEWS9RbMB4s_DwmUPMaiKYpNu_V73rTqOqMcwZtBrjat0gbWrC3dbelh18I-Nnc-fx5cI5sdyENiuYDEgeO7OBgmYOGi4CDWKaWxFyOsvROjEpDfG0PcS4hMoosJgt6kgXYvTLGvxDKU2Dej5hxquSE-C7g4jDhZu2eT7Te-PXkV86mPE6umIx0LjWTpFQQU6_W7mw3cQNEuwbaFifub08IBI2xUHUmarZVbYlxJ53UrYdkXIln07eHDiBnFKeMfgB69wllgOU1w_ggVnbjkCtvmBnd_XvPUNbolA9M9OFonTFlc1-p0dYq_Xkp8XbI_PegMZjZmcmBHGkoiJ84r1qiIs3xdzvDPh6lhRexFphAaelf89X_cKksMnl6L_wTqMPSBXeqgFW4pVP3I1TrJzPfG_hNTkFrTmqUR4wcOxCIHQ6rbtOa_agN3op7bxww4hAgaahiTNxY_y8ium1jZirLE-Tp1mFhV4OgUh8w3rBiUEd4XFs66XF-cf6pUJSMEbgdQWs7ViztNxQtoCjkOKjtGK1ccBTr3Hd9N6q2af5jIeJVyQNcCLgcSw-C9vWEk0l8qnWHuFFwrPsNEwr_OAnC11oOHXlQ8tGoGNEDZxfxp8cg-VIMOMl1OBSiK8NcKGGaU4rDjKGmP8aBB74q_QeYX6nrnOr7JCmJ_lFnMg; ph_phc_FItzF9gSMWU3vk8no368BnUuVqhnOk222NachQaLs2w_posthog=%7B%22distinct_id%22%3A%22gergo.bacskai%40datamc.com%22%2C%22%24sesid%22%3A%5B1754728275810%2C%2201988def-973f-7bcb-a09e-51011c5cd915%22%2C1754727946047%5D%2C%22%24epp%22%3Atrue%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22https%3A%2F%2Fdatamc.projectworksapp.com%2FProject%2FBudget%2F55%22%2C%22u%22%3A%22https%3A%2F%2Fdatamc.projectworksapp.com%2FAccount%2FLogin%22%7D%7D\";\n\nreturn {worklfowStaticData}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        128,
+        176
+      ],
+      "id": "297e540f-7f0c-4972-a1de-e4662b0ad769",
+      "name": "Projectworks Cookie"
+    },
+    {
+      "parameters": {
+        "url": "https://datamc.projectworksapp.com/Projects/Directory",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Cookie",
+              "value": "={{ $json.worklfowStaticData.ProjectWorksCookie }}"
+            },
+            {
+              "name": "Host",
+              "value": "datamc.projectworksapp.com"
+            }
+          ]
+        },
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "4e7d0b28-0385-4e8b-a029-dcb247cd8a7d",
+      "name": "Get Projects",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        352,
+        176
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "=data",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "id": "e644a90c-89f8-428d-81de-bfd97656dd9e",
+      "name": "Turn to a list1",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        800,
+        176
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "jsCode": "const regex = /\\/Project\\/View\\/(\\d+)/g;\nconst numbers = [];\nconst uniqueIds = new Set(); // Track unique IDs\nlet match;\n\nwhile ((match = regex.exec($input.first().json.data)) !== null) {\n  const projectId = parseInt(match[1], 10);\n  \n  // Only add if ID is not already in the Set\n  if (!uniqueIds.has(projectId)) {\n    uniqueIds.add(projectId);\n    numbers.push({ \"id\": projectId });\n  }\n}\n\nreturn { \"data\": numbers };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        576,
+        176
+      ],
+      "id": "054c4cc8-c401-4f13-84a0-4bfcea22dfa1",
+      "name": "Extract Project Codes"
+    },
+    {
+      "parameters": {
+        "url": "=https://datamc.projectworksapp.com/Project/AssignScheduleTasks?projectID={{ $json.data.id }}&isFromSchedule=true",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Cookie",
+              "value": "={{ $('Projectworks Cookie').item.json.worklfowStaticData.ProjectWorksCookie }}"
+            },
+            {
+              "name": "Host",
+              "value": "datamc.projectworksapp.com"
+            }
+          ]
+        },
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "fac92a96-8604-425a-8162-2da97d489b55",
+      "name": "Schedules",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1088,
+        368
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "url": "=https://datamc.projectworksapp.com/Project/Budget/{{ $json.data.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Cookie",
+              "value": "={{ $('Projectworks Cookie').item.json.worklfowStaticData.ProjectWorksCookie }}"
+            },
+            {
+              "name": "Host",
+              "value": "datamc.projectworksapp.com"
+            }
+          ]
+        },
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "9f7f5ce8-2b1f-4784-9e68-48ee09973aa9",
+      "name": "Budgets",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1088,
+        176
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "url": "https://dev.azure.com/DataMigrationConsultants/_apis/projects?api-version=7.1",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Cookie",
+              "value": "={{ $json.Cookie }}"
+            },
+            {
+              "name": "Host",
+              "value": "dev.azure.com"
+            }
+          ]
+        },
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "261ff970-9388-4294-bcc4-49c214eb6837",
+      "name": "Get Projects1",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        128,
+        720
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false,
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "nWloeuENyaWwUL6K",
+          "name": "Devops Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://dev.azure.com/DataMigrationConsultants/_apis/projects/{{ $json.data.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "fad2a099-def6-4900-9775-3d36555911ba",
+      "name": "Project Details",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1600,
+        912
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false,
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "nWloeuENyaWwUL6K",
+          "name": "Devops Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://dev.azure.com/DataMigrationConsultants/{{ $json.data.id }}/_apis/wit/wiql",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "api-version",
+              "value": "6.1"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"query\": \"Select [System.Id], [System.Title], [System.State] From WorkItems Where [System.Id] > 0 order by [System.Id] ASC\"}",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "9c6448a1-4dd7-4014-b77d-3f8af8944b76",
+      "name": "List workItems",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1600,
+        624
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false,
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "nWloeuENyaWwUL6K",
+          "name": "Devops Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "workItems",
+        "options": {}
+      },
+      "id": "cbe2b4e0-5283-40a9-8eb2-4317843a3f78",
+      "name": "Turn to a list3",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        1824,
+        624
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "c42f0ebd-b792-48d3-a469-9e15d75eda02",
+      "name": "Get workItems",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2272,
+        624
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false,
+      "executeOnce": false,
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "nWloeuENyaWwUL6K",
+          "name": "Devops Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json._links.workItemComments.href }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "1fd5e40a-6f7c-48d6-9f92-4ee990de682b",
+      "name": "Get workItem comments",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2720,
+        688
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false,
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "nWloeuENyaWwUL6K",
+          "name": "Devops Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_projects",
+          "mode": "list",
+          "cachedResultName": "dm_projects"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "NAME_PROJECTWORKS": "={{ $json.data.name }}",
+            "ID_PROJECTWORKS": "={{ $json.data.id }}",
+            "PROJECT_NAME": "={{ $json.data.name }}"
+          },
+          "matchingColumns": [
+            "ID_PROJECTWORKS"
+          ],
+          "schema": [
+            {
+              "id": "PROJECT_NAME",
+              "displayName": "PROJECT_NAME",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NAME_PROJECTWORKS",
+              "displayName": "NAME_PROJECTWORKS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "ID_PROJECTWORKS",
+              "displayName": "ID_PROJECTWORKS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1600,
+        -16
+      ],
+      "id": "0d91b2ec-0b15-42f5-8c24-2ba2fe13dfed",
+      "name": "Insert or update rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://datamc.projectworksapp.com/Project/Details/{{ $json.data.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Cookie",
+              "value": "={{ $('Projectworks Cookie').item.json.worklfowStaticData.ProjectWorksCookie }}"
+            },
+            {
+              "name": "Host",
+              "value": "datamc.projectworksapp.com"
+            }
+          ]
+        },
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "ce4bd14d-8c9a-47e5-ab32-408e4e1af935",
+      "name": "Details",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1088,
+        -16
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const htmlContent = $input.item.json.data;\n\n// Extract title\nconst titleRegex = /<title\\b[^>]*>([\\s\\S]*?)<\\/title>/i;\nconst match = htmlContent.match(titleRegex);\n\nif (match && match[1]) {\n  const title = match[1].trim();\n  \n  // Clean up HTML entities (e.g., \"&#xA0;\" → \" \")\n  const cleanTitle = title.replace(/&#xA0;/g, \" \").trim();\n  \n  // Split into ID (first word) and Name (rest)\n  const [id, ...nameParts] = cleanTitle.split(/\\s+/);\n  const name = nameParts.join(\" \").trim();\n\n  console.log(\"Extracted ID:\", id);\n  console.log(\"Extracted Name:\", name);\n  \n  return {\n    \"data\": {\n      \"id\": $('Turn to a list1').item.json.data.id,\n      \"name\": name\n    }\n  };\n} else {\n  console.error(\"No <title> tag found in HTML\");\n  return null;\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1376,
+        -16
+      ],
+      "id": "558d6c87-6079-4315-9114-eaca8d35ea4d",
+      "name": "Extract Project Codes1"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const htmlContent = $input.item.json.data;\n\n// Regex to match the total budget (accounts for different formats)\nconst budgetRegex = /Total Budget[\\s\\S]*?\\$([\\d,]+\\.\\d{2})/i;\nconst match = htmlContent.match(budgetRegex);\n\nif (match && match[1]) {\n  const budgetAmount = match[1]; // \"578,270.00\"\n  const budgetNumber = parseFloat(budgetAmount.replace(/,/g, ''));\n  console.log(\"Extracted Budget:\", budgetAmount);\n  \n  return {\n    \"data\": {\n      \"total_budget\": budgetNumber,\n      \"id\" : $('Turn to a list1').item.json.data.id\n    }\n  };\n} else {\n  console.error(\"No budget amount found in HTML\");\n  return null;\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1376,
+        176
+      ],
+      "id": "7b2e4f80-bfc2-427c-918c-ec69c1c7711f",
+      "name": "Extract Project Codes2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_projects",
+          "mode": "list",
+          "cachedResultName": "dm_projects"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "BUDGET": "={{ $json.data.total_budget }}",
+            "ID_PROJECTWORKS": "={{ $json.data.id.toString() }}"
+          },
+          "matchingColumns": [
+            "ID_PROJECTWORKS"
+          ],
+          "schema": [
+            {
+              "id": "PROJECT_NAME",
+              "displayName": "PROJECT_NAME",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "NAME_PROJECTWORKS",
+              "displayName": "NAME_PROJECTWORKS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ID_PROJECTWORKS",
+              "displayName": "ID_PROJECTWORKS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "BUDGET",
+              "displayName": "BUDGET",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1600,
+        176
+      ],
+      "id": "836da606-97d2-45cd-9ad8-53c2f3b5334e",
+      "name": "Update rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function extractTaskData(html) {\n    // Match module headers to get module names\n    const moduleRegex = /<tr[^>]*class=\"cu-tableHeaderSecondary\"[^>]*>[\\s\\S]*?<input[^>]*id=\"Modules_(\\d+)__ModuleID\"[^>]*value=\"(\\d+)\"[^>]*>([\\s\\S]*?)<\\/td>/g;\n    \n    // Match task rows to get task IDs and names\n    const taskRegex = /<input[^>]*id=\"Modules_(\\d+)__Tasks_(\\d+)__TaskID\"[^>]*value=\"(\\d+)\"[^>]*>[\\s\\S]*?<input[^>]*id=\"\\d+\"[^>]*name=\"Modules\\[\\d+\\]\\.Tasks\\[\\d+\\]\\.IsScheduledTask\"[^>]*>([\\s\\S]*?)<\\/label>/g;\n    \n    // Match date inputs\n    const dateRegex = /<input[^>]*id=\"Modules_(\\d+)__Tasks_(\\d+)__(StartDate|EndDate)\"[^>]*value=\"([^\"]*)\"[^>]*>/g;\n\n    // Store modules separately\n    const modules = {};\n    let moduleMatch;\n    \n    // Extract modules and their names\n    while ((moduleMatch = moduleRegex.exec(html)) !== null) {\n        const moduleIndex = moduleMatch[1];\n        const moduleId = moduleMatch[2];\n        const moduleName = moduleMatch[3].trim();\n        \n        modules[moduleIndex] = {\n            moduleId: moduleId,\n            moduleName: moduleName\n        };\n    }\n\n    // Create flat list of tasks\n    const tasks = [];\n    let taskMatch;\n    \n    // Extract tasks and their names\n    while ((taskMatch = taskRegex.exec(html)) !== null) {\n        const moduleIndex = taskMatch[1];\n        const taskIndex = taskMatch[2];\n        const taskId = taskMatch[3];\n        const taskNameHtml = taskMatch[4];\n        \n        // Extract just the text from the task name HTML\n        const taskName = taskNameHtml.replace(/<[^>]*>/g, '').trim();\n        \n        if (modules[moduleIndex]) {\n            const task = {\n                projectId : $('Turn to a list1').item.json.data.id,\n                moduleId: modules[moduleIndex].moduleId,\n                moduleName: modules[moduleIndex].moduleName,\n                taskId: taskId,\n                taskName: taskName\n            };\n            tasks.push(task);\n        }\n    }\n\n    // Add date information to tasks\n    let dateMatch;\n    while ((dateMatch = dateRegex.exec(html)) !== null) {\n        const moduleIndex = dateMatch[1];\n        const taskIndex = dateMatch[2];\n        const dateType = dateMatch[3].toLowerCase(); // startdate or enddate\n        const dateValue = dateMatch[4];\n        \n        // Find the corresponding task\n        const task = tasks.find(t => \n            t.moduleId === modules[moduleIndex]?.moduleId && \n            t.taskId === html.match(new RegExp(`id=\"Modules_${moduleIndex}__Tasks_${taskIndex}__TaskID\"[^>]*value=\"(\\\\d+)\"`))?.[1]\n        );\n        \n        if (task) {\n            const dateObject = new Date(dateValue);\n            if(dateValue) {\n                task[dateType] = dateObject;\n            }\n        }\n    }\n\n    return {\"data\" : tasks};\n}\n\nconst htmlContent = $input.item.json.data;\nconst extractedData = extractTaskData(htmlContent);\nreturn extractedData;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1376,
+        368
+      ],
+      "id": "76c818b3-0ad8-4fab-8b0e-e131b26d4491",
+      "name": "Extract Project Codes3"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_tasks",
+          "mode": "list",
+          "cachedResultName": "dm_tasks"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "TASK_ID": "={{ $json.data.taskId }}",
+            "MODULE_ID": "={{ $json.data.moduleId }}",
+            "PROJECT_ID": "={{ $json.data.projectId }}",
+            "MODULE_NAME": "={{ $json.data.moduleName }}",
+            "TASK_NAME": "={{ $json.data.taskName }}",
+            "START_DATE": "={{ $json.data.startdate }}"
+          },
+          "matchingColumns": [
+            "PROJECT_ID",
+            "MODULE_ID",
+            "TASK_ID"
+          ],
+          "schema": [
+            {
+              "id": "PROJECT_ID",
+              "displayName": "PROJECT_ID",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "MODULE_ID",
+              "displayName": "MODULE_ID",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TASK_ID",
+              "displayName": "TASK_ID",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "MODULE_NAME",
+              "displayName": "MODULE_NAME",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "TASK_NAME",
+              "displayName": "TASK_NAME",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "START_DATE",
+              "displayName": "START_DATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "END_DATE",
+              "displayName": "END_DATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1824,
+        368
+      ],
+      "id": "00f9589d-bf43-4691-94a5-8c48372f9975",
+      "name": "Insert or update rows in a table1",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "=data",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "id": "20e9e821-980d-4abb-92ed-3ed1a3619e23",
+      "name": "Turn to a list4",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        1600,
+        368
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_projects",
+          "mode": "list",
+          "cachedResultName": "dm_projects"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        352,
+        816
+      ],
+      "id": "a466097b-9f02-4cdd-af09-f584d55eccb5",
+      "name": "Select rows from a table",
+      "credentials": {
+        "postgres": {
+          "id": "HZrppzqmklIpMmON",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Which project_name should I pick from projects  for { \"id\" : {{ $json.value.id }} , \"name\" : {{ $json.value.name }}, \"description\" : {{ $json.value.description }}}\n\nJSON:\n{{ $json.projects.toJsonString() }}\n\nreturn only valid json, do not include any text or explanation:\n{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"id\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"matched_project_name\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t}\n}\n\nresponse_format = {\"type\" : \"json_object\"}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": ""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1024,
+        608
+      ],
+      "id": "f9722b1a-5720-4aed-89c0-e3bbbe610957",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "openai/gpt-oss-20b",
+          "mode": "list",
+          "cachedResultName": "openai/gpt-oss-20b"
+        },
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1104,
+        832
+      ],
+      "id": "55997a21-29a3-49f2-9459-874ac2514447",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "f7w1w21IJI9gIfih",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        800,
+        720
+      ],
+      "id": "cc5d54d6-e890-4fd8-ab3d-09642902de11",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "=value",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "id": "337cb184-c04b-4883-b5cb-ff1a71198261",
+      "name": "Turn to a list5",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        576,
+        624
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nvar arr = []\n\nfor (const item of $input.all()) {\n  arr.push({\"project_name\" : item.json.PROJECT_NAME, \"name_devops\" : $input.first().json.NAME_DEVOPS, \"id_devops\" : $input.first().json.ID_DEVOPS })\n}\n\nreturn {\"projects\" : arr} ;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        576,
+        816
+      ],
+      "id": "8b3e2dad-8d33-44d3-9e09-3fcd8d968a48",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "\nfunction extractJsonSimple(text) {\n  const jsonRegex = /(\\{[^}{]*\\}|\\[[^\\[\\]]*\\])/g;\n  const matches = text.match(jsonRegex) || [];\n  \n  return matches\n    .map(match => {\n      try {\n        return JSON.parse(match);\n      } catch (e) {\n        return null;\n      }\n    })\n    .filter(Boolean);\n}\n\n\n\nlet arr = extractJsonSimple($json.output)\nconst projectName = $('Merge').item.json.value.name;\n\n// Add project_name to EACH object in the array\narr = arr.map(obj => ({\n  ...obj,\n  project_name: projectName\n}));\n\n\nreturn {\"data\" : arr[0] }"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1376,
+        720
+      ],
+      "id": "bc6451d5-cfc1-4ab5-ad25-c3b9e95fc03a",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_projects",
+          "mode": "list",
+          "cachedResultName": "dm_projects"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "PROJECT_NAME": "={{ $('Code2').item.json.data.matched_project_name }}",
+            "ID_DEVOPS": "={{ $json.id }}",
+            "NAME_DEVOPS": "={{ $json.name }}"
+          },
+          "matchingColumns": [
+            "PROJECT_NAME"
+          ],
+          "schema": [
+            {
+              "id": "PROJECT_NAME",
+              "displayName": "PROJECT_NAME",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NAME_PROJECTWORKS",
+              "displayName": "NAME_PROJECTWORKS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ID_PROJECTWORKS",
+              "displayName": "ID_PROJECTWORKS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "BUDGET",
+              "displayName": "BUDGET",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ID_DEVOPS",
+              "displayName": "ID_DEVOPS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NAME_DEVOPS",
+              "displayName": "NAME_DEVOPS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2048,
+        912
+      ],
+      "id": "a3eabb71-a7aa-4dbe-b0aa-0fe02993f2e5",
+      "name": "Update rows in a table1",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3aeff8c2-ae87-4193-af3c-a14981a63b84",
+              "leftValue": "={{ $('Code2').item.json.data.matched_project_name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        1824,
+        912
+      ],
+      "id": "6bb0f319-99c7-4fae-91a5-e17b9ed9ea30",
+      "name": "Filter1"
+    },
+    {
+      "parameters": {
+        "batchSize": 500,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2048,
+        624
+      ],
+      "id": "eef6c674-3ad5-4a5e-9437-9c8ab61afe2f",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9f579c68-0ede-4c55-8396-4ae1da175e9c",
+              "leftValue": "={{ $json.DMREVOLVE_URL }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        352,
+        1248
+      ],
+      "id": "e843d288-19af-48b6-8e27-e30d0b9f3c0d",
+      "name": "Filter2"
+    },
+    {
+      "parameters": {
+        "content": "## Azre DevOps",
+        "height": 80,
+        "width": 2176
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        272,
+        480
+      ],
+      "typeVersion": 1,
+      "id": "8326d50d-b983-499a-ac71-8f8368d8d5cd",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Projetworks",
+        "height": 80,
+        "width": 2768
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        256,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "dd980fc8-4a7b-46a1-b877-22fe8db6dda3",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## DMRevolve",
+        "height": 80,
+        "width": 1760
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        480,
+        1040
+      ],
+      "typeVersion": 1,
+      "id": "be8332df-947b-468d-9308-8011f8b8a09e",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.body.data.redirect }}/wom/getobjectspage",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Host",
+              "value": "={{ $json.body.data.redirect.split('/')[2].split(':')[0] }}"
+            },
+            {
+              "name": "Cookie",
+              "value": "={{ $json.headers['set-cookie'][0] }}"
+            }
+          ]
+        },
+        "options": {
+          "allowUnauthorizedCerts": true,
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "8546d0d6-4075-49a8-9cc8-9b7068678723",
+      "name": "Get WOM Data",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        800,
+        1344
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "body.data",
+        "options": {}
+      },
+      "id": "bfc01003-d22c-4728-b074-8650ff72210a",
+      "name": "Turn to a list",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        1088,
+        1248
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_rom",
+          "mode": "list",
+          "cachedResultName": "dm_rom"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $json.id }}",
+            "DESCRIPTION": "={{ $json.description }}",
+            "STREAM": "={{ $json.stream }}",
+            "OBJECT": "={{ $json.object }}",
+            "GROUP": "={{ $json.group }}",
+            "BAD": "={{ $json.total.bad }}",
+            "GOOD": "={{ $json.total.good }}",
+            "WARNING": "={{ $json.total.warning }}",
+            "COMPANY": "={{ $json.companies[0].company }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "DESCRIPTION",
+              "displayName": "DESCRIPTION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "STREAM",
+              "displayName": "STREAM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "OBJECT",
+              "displayName": "OBJECT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "GROUP",
+              "displayName": "GROUP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "BAD",
+              "displayName": "BAD",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "GOOD",
+              "displayName": "GOOD",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "WARNING",
+              "displayName": "WARNING",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "COMPANY",
+              "displayName": "COMPANY",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1088,
+        1056
+      ],
+      "id": "3c278a05-a9da-4a13-85c7-de8b3dc3c16f",
+      "name": "Insert Rom",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Login to DMRevolve').item.json.body.data.redirect }}/wom/history?id={{ $json.ID }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Host",
+              "value": "={{ $('Login to DMRevolve').item.json.body.data.redirect.split('/')[2].split(':')[0] }}"
+            },
+            {
+              "name": "Cookie",
+              "value": "={{ $('Login to DMRevolve').item.json.headers['set-cookie'][0] }}"
+            }
+          ]
+        },
+        "options": {
+          "allowUnauthorizedCerts": true,
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "102a50d8-d027-4a7a-a2b0-7421ca793122",
+      "name": "Get WOM History",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2496,
+        1008
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "body",
+        "options": {}
+      },
+      "id": "dc4afb02-31d2-450d-bb3a-c02e4e45d131",
+      "name": "Turn to a list2",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        2720,
+        1008
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_projects",
+          "mode": "list",
+          "cachedResultName": "dm_projects"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        128,
+        1248
+      ],
+      "id": "7126e0e4-b8a7-40ac-8531-aaad18eb9a72",
+      "name": "Select rows from a table1",
+      "credentials": {
+        "postgres": {
+          "id": "HZrppzqmklIpMmON",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 5,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1824,
+        1248
+      ],
+      "id": "fa0e11ef-42e5-4517-b73e-5d45074ae6a8",
+      "name": "Loop Over Items2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4e173c2a-6dbe-4749-84b8-5e5b47376e26",
+              "leftValue": "={{ $json.LE }}",
+              "rightValue": "MTCC",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "c0785979-056e-4485-a652-518ab9fb3801",
+              "leftValue": "={{ $json.OBJECT }}",
+              "rightValue": "Asset_Attachment",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        1600,
+        1248
+      ],
+      "id": "cff9ab51-cba9-41c6-9122-0e09a861414d",
+      "name": "Filter3",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_wom_history",
+          "mode": "list",
+          "cachedResultName": "dm_wom_history"
+        },
+        "deleteCommand": "delete",
+        "where": {
+          "values": [
+            {
+              "column": "COMPANY",
+              "value": "={{ $json.LE }}"
+            },
+            {
+              "column": "OBJECT_ID",
+              "value": "={{ $json.ID }}"
+            },
+            {
+              "column": "TIME_TEXT",
+              "condition": "LIKE",
+              "value": "%now"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2048,
+        1104
+      ],
+      "id": "05eff3b3-da2e-493c-bf0c-bf01abd4bbd4",
+      "name": "Delete wom history now",
+      "alwaysOutputData": false,
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "comments",
+        "options": {}
+      },
+      "id": "2b194cfd-a2ac-4759-9772-518f22008ca1",
+      "name": "Turn to a list6",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        2944,
+        688
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_workitem_comments",
+          "mode": "list",
+          "cachedResultName": "dm_workitem_comments"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $json.id }}",
+            "WORKITEM_ID": "={{ $json.workItemId }}",
+            "VERSION": "={{ $json.version }}",
+            "TEXT": "={{ $json.text }}",
+            "CREATED_BY": "={{ $json.createdBy.displayName }}",
+            "FORMAT": "={{ $json.format }}",
+            "MODIFIED_DATE": "={{ $json.modifiedDate }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "WORKITEM_ID",
+              "displayName": "WORKITEM_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "VERSION",
+              "displayName": "VERSION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "TEXT",
+              "displayName": "TEXT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "CREATED_BY",
+              "displayName": "CREATED_BY",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "FORMAT",
+              "displayName": "FORMAT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "MODIFIED_DATE",
+              "displayName": "MODIFIED_DATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        3168,
+        768
+      ],
+      "id": "73659e9a-d897-4256-a2b5-7c0f6731f1b0",
+      "name": "Insert or update rows in a table4",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 50,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2496,
+        768
+      ],
+      "id": "ac59976c-4a00-4602-bac5-580bd775a580",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_projects",
+          "mode": "list",
+          "cachedResultName": "dm_projects"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -96,
+        1664
+      ],
+      "id": "1cd7d17c-fb8b-492c-beeb-b7816a2253d7",
+      "name": "Select rows from a table2",
+      "credentials": {
+        "postgres": {
+          "id": "HZrppzqmklIpMmON",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_workitems",
+          "mode": "list",
+          "cachedResultName": "dm_workitems"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "WORKITEM_ID": "={{ $json.id }}",
+            "TITLE": "={{ $json.fields['System.Title'] }}",
+            "PROJECT_ID": "={{ $json.fields['System.TeamProject'] }}",
+            "STATE": "={{ $json.fields['System.State'] }}",
+            "REASON": "={{ $json.fields['System.Reason'] }}",
+            "WORKITEM_TYPE": "={{ $json.fields['System.WorkItemType'] }}",
+            "OBJECTGROUP": "={{ $json.fields['Custom.ObjectGroup'] }}",
+            "TASKTRACKER": "={{ $json.fields['Custom.TaskTracker'] }}",
+            "POM_COMPLETED": "={{ $json.fields['Custom.POMCompleted'] ?? false}}",
+            "STARTEGY_COMPLETED": "={{ $json.fields['Custom.StrategyCompleted'] ?? false}}",
+            "MOM_COMPLETED": "={{ $json.fields['Custom.MOMCompleted'] ?? false}}",
+            "WOM_AUTO": "={{ $json.fields['Custom.WOMAuto'] ?? false}}",
+            "DM_PACKAGE_COMPLETED": "={{ $json.fields['Custom.DMPackageCompleted'] ?? false}}",
+            "NON_SG3_CODING_COMPLETED": "={{ $json.fields['Custom.NonSG3CodingCompleted'] ?? false}}",
+            "WOM_AUTO_ENABLED": "={{ $json.fields['Custom.WOMAutoEnabled'] ?? false}}",
+            "OBJECT_COMPLETION_DUE_DATE": "={{ $json.fields['Custom.ObjectCompletionDuedate'] }}",
+            "CURRENT_WOM_STEP": "={{ $json.fields['Custom.CurrentWOMstep'] ?? '??'}}",
+            "ASSIGNED_TO": "={{ $json.fields['System.AssignedTo'].displayName }}"
+          },
+          "matchingColumns": [
+            "WORKITEM_ID"
+          ],
+          "schema": [
+            {
+              "id": "WORKITEM_ID",
+              "displayName": "WORKITEM_ID",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TITLE",
+              "displayName": "TITLE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "PROJECT_ID",
+              "displayName": "PROJECT_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "STATE",
+              "displayName": "STATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "REASON",
+              "displayName": "REASON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "WORKITEM_TYPE",
+              "displayName": "WORKITEM_TYPE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "OBJECTGROUP",
+              "displayName": "OBJECTGROUP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "TASKTRACKER",
+              "displayName": "TASKTRACKER",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "STARTEGY_COMPLETED",
+              "displayName": "STARTEGY_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "POM_COMPLETED",
+              "displayName": "POM_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "MOM_COMPLETED",
+              "displayName": "MOM_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "WOM_AUTO",
+              "displayName": "WOM_AUTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "DM_PACKAGE_COMPLETED",
+              "displayName": "DM_PACKAGE_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "NON_SG3_CODING_COMPLETED",
+              "displayName": "NON_SG3_CODING_COMPLETED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "WOM_AUTO_ENABLED",
+              "displayName": "WOM_AUTO_ENABLED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "OBJECT_COMPLETION_DUE_DATE",
+              "displayName": "OBJECT_COMPLETION_DUE_DATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "CURRENT_WOM_STEP",
+              "displayName": "CURRENT_WOM_STEP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "OBJECT",
+              "displayName": "OBJECT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "BLOCK_REASON",
+              "displayName": "BLOCK_REASON",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "ASSIGNED_TO",
+              "displayName": "ASSIGNED_TO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2496,
+        528
+      ],
+      "id": "3e0f681b-5bf5-4311-a081-6651510f78c2",
+      "name": "I/U workitems",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2272,
+        1248
+      ],
+      "id": "54697ff8-e37a-4452-aafa-07b7bf3870ae",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_wom_history",
+          "mode": "list",
+          "cachedResultName": "dm_wom_history"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "TIME": "={{ $json.time.split(' - ')[0] }}",
+            "COMPANY": "={{ $('I/U wom').item.json.LE }}",
+            "STATUS": "={{ $json.status }}",
+            "NOTES": "={{ $json.notes }}",
+            "USER": "={{ $json.user }}",
+            "OBJECT_ID": "={{ $('Turn to a list').item.json.id }}",
+            "TIME_TEXT": "={{ $json.time }}",
+            "ENABLED": "={{ $json.enabled === true || $json.enabled === false ? $json.enabled : null }}"
+          },
+          "matchingColumns": [
+            "COMPANY",
+            "OBJECT_ID",
+            "TIME_TEXT"
+          ],
+          "schema": [
+            {
+              "id": "COMPANY",
+              "displayName": "COMPANY",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "STATUS",
+              "displayName": "STATUS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "NOTES",
+              "displayName": "NOTES",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "USER",
+              "displayName": "USER",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "OBJECT_ID",
+              "displayName": "OBJECT_ID",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TIME_TEXT",
+              "displayName": "TIME_TEXT",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TIME",
+              "displayName": "TIME",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "ENABLED",
+              "displayName": "ENABLED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2944,
+        1008
+      ],
+      "id": "cab13515-0887-439d-a6e9-ea4635ddbe91",
+      "name": "I/U wom_history",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_projects",
+          "mode": "list",
+          "cachedResultName": "dm_projects"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "DMREVOLVE_URL": "={{ $('Login to DMRevolve').item.json.body.data.redirect }}",
+            "ID": "={{ $json.body.data[0].LE }}"
+          },
+          "matchingColumns": [
+            "DMREVOLVE_URL"
+          ],
+          "schema": [
+            {
+              "id": "PROJECT_NAME",
+              "displayName": "PROJECT_NAME",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "NAME_PROJECTWORKS",
+              "displayName": "NAME_PROJECTWORKS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ID_PROJECTWORKS",
+              "displayName": "ID_PROJECTWORKS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "BUDGET",
+              "displayName": "BUDGET",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ID_DEVOPS",
+              "displayName": "ID_DEVOPS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "NAME_DEVOPS",
+              "displayName": "NAME_DEVOPS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "DMREVOLVE_URL",
+              "displayName": "DMREVOLVE_URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1088,
+        1440
+      ],
+      "id": "9356af40-1f73-44ee-b73b-3455e933351a",
+      "name": "U projects",
+      "credentials": {
+        "postgres": {
+          "id": "HZrppzqmklIpMmON",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_wom",
+          "mode": "list",
+          "cachedResultName": "dm_wom"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ENABLED": "={{ $json.enabled }}",
+            "HIDDEN": "={{ $json.hidden }}",
+            "ID": "={{ $json.id }}",
+            "LE": "={{ $json.LE }}",
+            "DUE_DATE": "={{ $json.dueDate }}",
+            "GROUP": "={{ $json.group }}",
+            "DESCRIPTION": "={{ $json.description }}",
+            "OBJECT": "={{ $json.object }}",
+            "PROGRESS": "={{ $json.progress }}",
+            "STREAM": "={{ $json.stream }}",
+            "STATUS": "={{ $json.status }}",
+            "TAGS": "={{ $json.tags }}"
+          },
+          "matchingColumns": [
+            "ID",
+            "LE"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "LE",
+              "displayName": "LE",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ENABLED",
+              "displayName": "ENABLED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "DUE_DATE",
+              "displayName": "DUE_DATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "GROUP",
+              "displayName": "GROUP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "DESCRIPTION",
+              "displayName": "DESCRIPTION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "PROGRESS",
+              "displayName": "PROGRESS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "OBJECT",
+              "displayName": "OBJECT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "STREAM",
+              "displayName": "STREAM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "STATUS",
+              "displayName": "STATUS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "HIDDEN",
+              "displayName": "HIDDEN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "TAGS",
+              "displayName": "TAGS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1376,
+        1248
+      ],
+      "id": "346c7786-710a-4b12-897d-1814ff357ca0",
+      "name": "I/U wom",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "body",
+        "options": {}
+      },
+      "id": "5f9b66ad-0a90-4c86-a0e9-0109464b99b2",
+      "name": "Turn to a list7",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        2720,
+        1168
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "value": "datamc",
+          "mode": "list",
+          "cachedResultName": "datamc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "dm_wom",
+          "mode": "list",
+          "cachedResultName": "dm_wom"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('Merge1').item.json.ID }}",
+            "LE": "={{ $('Merge1').item.json.LE }}",
+            "STRATEGY": "={{ $json }}"
+          },
+          "matchingColumns": [
+            "LE",
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "LE",
+              "displayName": "LE",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ENABLED",
+              "displayName": "ENABLED",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "DUE_DATE",
+              "displayName": "DUE_DATE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "GROUP",
+              "displayName": "GROUP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "DESCRIPTION",
+              "displayName": "DESCRIPTION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "PROGRESS",
+              "displayName": "PROGRESS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "OBJECT",
+              "displayName": "OBJECT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "STREAM",
+              "displayName": "STREAM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "STATUS",
+              "displayName": "STATUS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "HIDDEN",
+              "displayName": "HIDDEN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "TAGS",
+              "displayName": "TAGS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "STRATEGY",
+              "displayName": "STRATEGY",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2944,
+        1168
+      ],
+      "id": "dc83063b-d7e0-40ec-b38a-7d01450f98dd",
+      "name": "I/U wom_history1",
+      "credentials": {
+        "postgres": {
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Login to DMRevolve').item.json.body.data.redirect }}/wom/api/getstrategy?id={{ $json.ID }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Host",
+              "value": "={{ $('Login to DMRevolve').item.json.body.data.redirect.split('/')[2].split(':')[0] }}"
+            },
+            {
+              "name": "Cookie",
+              "value": "={{ $('Login to DMRevolve').item.json.headers['set-cookie'][0] }}"
+            }
+          ]
+        },
+        "options": {
+          "allowUnauthorizedCerts": true,
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "d33f1776-a6cb-454c-af26-4c789a1c58b0",
+      "name": "Get WOM strategy",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2496,
+        1168
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false
+    }
+  ],
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Projectworks Cookie",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Projects1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Select rows from a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Login to DMRevolve": {
+      "main": [
+        [
+          {
+            "node": "Get WOM Data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "get ROM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Projectworks Cookie": {
+      "main": [
+        [
+          {
+            "node": "Get Projects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Projects": {
+      "main": [
+        [
+          {
+            "node": "Extract Project Codes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Project Codes": {
+      "main": [
+        [
+          {
+            "node": "Turn to a list1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Turn to a list1": {
+      "main": [
+        [
+          {
+            "node": "Details",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Budgets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Schedules",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Projects1": {
+      "main": [
+        [
+          {
+            "node": "Turn to a list5",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List workItems": {
+      "main": [
+        [
+          {
+            "node": "Turn to a list3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Turn to a list3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get workItems": {
+      "main": [
+        [
+          {
+            "node": "I/U workitems",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get workItem comments": {
+      "main": [
+        [
+          {
+            "node": "Turn to a list6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Details": {
+      "main": [
+        [
+          {
+            "node": "Extract Project Codes1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Project Codes1": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Budgets": {
+      "main": [
+        [
+          {
+            "node": "Extract Project Codes2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Project Codes2": {
+      "main": [
+        [
+          {
+            "node": "Update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update rows in a table": {
+      "main": [
+        []
+      ]
+    },
+    "Schedules": {
+      "main": [
+        [
+          {
+            "node": "Extract Project Codes3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Project Codes3": {
+      "main": [
+        [
+          {
+            "node": "Turn to a list4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update rows in a table": {
+      "main": [
+        []
+      ]
+    },
+    "Turn to a list4": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Turn to a list5": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "List workItems",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Project Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Project Details": {
+      "main": [
+        [
+          {
+            "node": "Filter1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update rows in a table1": {
+      "main": [
+        []
+      ]
+    },
+    "Filter1": {
+      "main": [
+        [
+          {
+            "node": "Update rows in a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Get workItems",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter2": {
+      "main": [
+        [
+          {
+            "node": "Login to DMRevolve",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get WOM Data": {
+      "main": [
+        [
+          {
+            "node": "Turn to a list",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "U projects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Turn to a list": {
+      "main": [
+        [
+          {
+            "node": "I/U wom",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get ROM": {
+      "main": [
+        [
+          {
+            "node": "Insert Rom",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert Rom": {
+      "main": [
+        []
+      ]
+    },
+    "Get WOM History": {
+      "main": [
+        [
+          {
+            "node": "Turn to a list2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Turn to a list2": {
+      "main": [
+        [
+          {
+            "node": "I/U wom_history",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table1": {
+      "main": [
+        [
+          {
+            "node": "Filter2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Delete wom history now",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Filter3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete wom history now": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Turn to a list6": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Get workItem comments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update rows in a table4": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Get WOM History",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get WOM strategy",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "I/U wom_history": {
+      "main": [
+        []
+      ]
+    },
+    "I/U wom": {
+      "main": [
+        [
+          {
+            "node": "Filter3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Turn to a list7": {
+      "main": [
+        [
+          {
+            "node": "I/U wom_history1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "I/U wom_history1": {
+      "main": [
+        []
+      ]
+    },
+    "Get WOM strategy": {
+      "main": [
+        [
+          {
+            "node": "Turn to a list7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": {
+    "global": {
+      "ProjectWorksCookie": "$$A_U_ID=c8b77f7d-2884-4830-8393-4eb9427a64df; TiPMix=8.223556721272885; x-ms-routing-name=self; pws=CfDJ8PByodJIE6BLt528%2F9yXbQ0BDWN8dYPfW7s6rStHNWtimxet1a0GWTl%2B92TSdx5zrBX7rDZ%2BgtYZ0mp4FLNpIG2YfSotMMvawbtyzcOpF6WGAbI5mXG1rxkHswCyjZv%2FRDgmaSh1hd0WO6SRhbJDLHaBNGtoA1hPhRGXxA%2BDksHP; ARRAffinity=3bf8829b4314cc88291bac4130bb39f2498ea1af76e709ccc5192f2a63139759; ARRAffinitySameSite=3bf8829b4314cc88291bac4130bb39f2498ea1af76e709ccc5192f2a63139759; TiPMix=24.399584671406515; x-ms-routing-name=self; Identity.External=chunks-2; Identity.ExternalC1=CfDJ8PByodJIE6BLt528_9yXbQ3VLDuwjnlLI0j51dZJwvMMK9nFMqK8bset9Rc9Y2uqRd3_s_mGLHR3sdmiZo1mOYlIZofSl7C3Nd9RV4-jAfUBD478Byrk2e4st3GxSbvHsNEAPXFYxSGAbTCdPHkxYcAdDFOlk73Y3oHs5dzFHUIBN44Knt2L6hU20zGiMfydOSeV0VYXKfGlgngzW6Py-SWhwer93l2vMUdJEa3GgA-Um0e7JdCin5iJgIFKvxbj_xmBz2xeirAVUnvhP7kJSqNmWNA_i-q49fVXnN-c8XvKjpcph6I85eQ7SXRddtVgCvq1hKq5cO7rE6aHwQi8RGMfljGTKNkmXqFXsINKa9-pEz2CDYgic6adBKy3nZGXYUO_Nsfs11OPYhqiRr3NkBae2055614zgSfRhSVQw8Z4Sj0_nR924r0jGhHIOtEGEKiMLtd0GF0K990mtzSNYW6gQD0ve5KaAXnCiCsWdoCz4oxc0ho-E89Z1dXBz3-xPq3Y5X4f59evu4jDCvssYhVRZYtgzXy86t5iEA8lhzcP0TYXkCjRUfxLPGjLfFb8iwqg7bRavYLdaeLiw7k59DgD99U__iqwGoV1u5L136Se3fxafpvs2Yak0YfqmdEZLsGG2tNo3u26rDjHHhnZeJFpeLv7_obcx24Zizs7v_Me7ST1HeQU5Ao13A82ReH7VxPzgRCuAlOOpcvAtNHGEyvHuQR0Zb6P0Kn9C4Zaj4xNA-LMKnJyRTuLi7P4jP1CwFmfeq_fSZgkx21cm2fu8CwXyi4av29zBMJbXGWBrUEn3NvGYuyGOMCDKWcX8JFQHHPOLiMw-FmQEwEETVBsqBdNc6yzKmY2vUA0R9gJUWncAg1J_7D4eyOStf4kWzJCF3l_QsoUekgLuOmLZwEi5nWcBxi-UmPF8a4FohYqzOMLkZhGLaFopdGQ2zxsCoCKyIp4lIHjXXPrVcW0_69htnQYMG7KlVLzknyLbbv9XRCEW8KvPesf5m-OynqYkIXIP_t_FJzaaZnJ7KO30sDoNT4E6HrKl_0xVr9LZMmEtHz4M3UodiJeSR3M2K1MIAHxmkoKVKrqBm6_9HOGNYolqfJ7V4X4s_nSltXu4T5zfA5K1XKbLbnFj_tj9nVPoagcOCMCURDAx-ubigNloecOjMFrCMDBx1NJmiB7ya4VTn2HOkH6rN5kRxvLVJAMMsUUKO7MPePI_A_fP7fH5Fq0RahyYmGDIu1Nh4etIx11z6QAHBun7RDUpV3zPzDpzQhcsy9d7L9BfCggmyvsHw7vmsG0DGBBwjqSW_3jFM1OAltRMG05fJFSaoB18Y79stnwz54-HrdwFVvg_EDBa6F4zd22aT8pNBR6noITKoye5HCWKNDTKgB8XfghVczQPQAN0G3WycGs_X2VtYjLIbF87krbhrkNuKirlyiTmwrxiVW_f-VGba8pe8OgiAkV4ZGvF5MVgZpqCRGhVEsosDm3I4Ojsz9gorG087K7l2N9QZepAO2iP_uWD3_qFC9mFapxDo8_zNK0Ve6C9fSDh7jvoiVFeIcDofG6OhAheaffVU_4mzxOEcuDAyTtscxH4XrUC_RT57GAgojyTYYmuSBuMLjFvpVhmkx4lquB89e_izv9eKhI4IENOAwKxgVqlD9NVsfmQuQuDvme-s68tzWJN1TwxgtlOCBjqbXVasIGDlYvCGowRG7k3-a2DqKAw1Fwt2HCf024QIZe54V8yfi6Y_-wZC7DFf-dm9XvOGiYmh4h8vWg3iDP9ny6OQ-rZHbauBYdY8fALFuVQGkjZfJRIPC1w1DONBQojX4mHa_wY8RMAdfU17Ud4T7RQD5iDde_BH5LTw4TPQyjR2NsMZ0d9-_PU1KwLVzZ9jBcZ8DzyZRfveeXvVXvvqGyYS-zL5S4KJVnjL5-HP7MMuie4GhDaNLl3rXGalXj7sYzldhJy1QoxkdynMAnPquOznt53uRYunsbK_9jRGhP10ADAv2Q3ti6y9Gds33ZGhHdHRoH1io15IsWjQY9vgXijnDQGBnv7_CNTPcmVeyZd-X1ShBguQMAJhKkU7h7jFY-T19WvlTO5zr0ZbpIbGkxD0JRjIoGjt0vhq9WpFgfzvavMfhGUa0wZJ4DbC4tRn19MiPQVAaOnYDafkbfAhb54RlxFEgrt5IF2lhrCVTzhAvJ4gjn3lbR8LJzIqEXQnVP1BzciY3L3v9055NtNIOzQXDT47DYRtFzEhdx3b9OXEaPaq3MlgQSBIEHpoR5NoUQrQgky2nZBLBfYXLJ2rpfuHrV32eB6a8VvqimMjgULvrOcVWbGbndWmxQbID3gaKzIy8-Cnv3Fm4feplcKEmvWzUD9n5NB-rTLFytbdo0cQ8gqtcvnX9sfYyGZJjxao5IHeyelvwbjMC5SyLbSP3FFI52RqSqnDoANGQvTFFEWLDR-r8eYkv_Qt9MSMYBpcLOliRjoZTFlHgU47nEmZgVAw0Y_OfvS141V6n0xJ5bcpFGGWB63XNwGSM4Es2CmooVkK1BG7hdzgbjORDOwg1WoNXr8cq_f0Ek8XASjaZ3MeJAwPgnbld9oroK5JsduRjwpXta3nUz1lyEWcN7oWm0etEeeVe4G3YihMvTICK1Rk8o59slEF9h7728Cl27e6wwSJWOZpjvp_C4M29GmdgrYMdfyyosyhZjHm6smYKwQs8yOO1iseOev0ydibnEHpAaFA_c1wZzP745UGk5JJ4yxx7--7s1IR4zAg8tU0vQL019zugWwscYO-TfIroHA49uKFhKqbYvZ4-5C_UkQByvfy8ftXSVlU_hr1XBOe6YirWA_CsdIRXMeOQpVRCLf7doEBfecJeaDvuFjvJCJtvkMs1HbakBtmNwSavprcLZzbeZyeYIJhN_kVILOwdhr6fqHYFZ3xaEw-v1vYly_Kcx7B6FFYWUjwlP868cCATDDpYbzpmW6gx4yfahtjnhjAiH9_gXUgb2gOeDdxuKqj_qcHnZJe3aw15y9eaTFkyV0rzs-Pa_ByvE6nbCPrJTK8oILOkah5BPx2O1b9cQ1pWzCI24tcmtD8LeYBl-l-oGSLpUBZtQJrAefacoX-CwxBf9ehA7AMLPoijJyDT8yJc66s5A9syl1seKxgslYjKzamdJjf8PpSIbmX1qElvRsORGxwq-iHlUe-dKoWMiqGTSz6ZknrHDsGIFVF2Ve9kBmoUTixRHrVXzRYJGpPvigDQP6G5SrC7tnE-7AnZEDyvQpikB0v0gER4fpJgG6_k4VNtjrtl7h3Zk1JOYsLGIQ0PIkgNXgZg9PQzw7vxuSuAjIxcN4DcHqyMqXGjyEpU1tj5AQUQDYzj3ObxhaFkuRJGVk7tRl0amw96dzb830bvOpGIvEDkNNE-0tONH-yjjGnUF0eemqcUkyrCpfGAZRx7LEJh3IPEULlLXOorxFUYU161qQ8AsyVeCGRAWYOdw2xYq0mKlVLQ7zTfMPrwaHrMoWk_tTrsVKoXFwUiaonJWOiVoX35YibOQhmtaT4TUSwb3Tu3vO1zp-lqP1RQFVtGvtF-CY9fOkNnbRbd9Fc0_2k90ggzoEOdxr75XifB8tUSild5y_QZdfYcuqsofy_EPFQ7HvoxFtwU2somnhCOGK2r0R-QIgNXbwR0n-XxkVmkX150chXRBO9RHO6-wfaqYK1YNFZc76vScTRXJ9Q_rujOSNYZzCsPmo1fiPMkUpM1I4AqqqC-JQBGpkTAmg_hElG6Nth_wUa-j5Oa72dq-WMGpfvc_oEpdJ-KUmLGIhR_b9pCRH25Dqy5xScWskCTIV2W0i4DBoUBdg2ytSG4uYO8ChvSLoPlyIGLRnCBu-spcRalzJ5XN8G6eh8tICG8qq6RLip0XorBO3fNvnkTkI3ZiWMgIwG82QLhBMHYL5VwWQ5nw-HMYp8Dm5SW0aUF7fexsPpLz6d98ONam2; Identity.ExternalC2=WNraHXHoZCUfA; ARRAffinity=f402ed00886c6f0108d0d45475f30c4450fd71385d2cd70a4c2038470204e750; ARRAffinitySameSite=f402ed00886c6f0108d0d45475f30c4450fd71385d2cd70a4c2038470204e750; pwa=CfDJ8PByodJIE6BLt528_9yXbQ3nX4y-CYGJEPUNS9rd79Ew4DM_MJM2OrUHNu44C5-iEkJl7q4AXoO-0MfwdfxW91-9ywG0o1AHmIR3eTjQBA6Vu7ZSJMim_482DOzvObsofIT-skIA4YTbVieedklrBYzCGQ7-Stdm9p90Vci-8Q10Vhc5rNqOKGCEfX5H4fZfU6NDbftIzN-T56bzuZw-7uf3oh9Dq33Og42svUNdyrLBHICxGbahR8Q_KRVvze33qKO-TrbuawBBd1hJb4S7vCHKnO39htTQDonaxcz8_wroH6yEWS9RbMB4s_DwmUPMaiKYpNu_V73rTqOqMcwZtBrjat0gbWrC3dbelh18I-Nnc-fx5cI5sdyENiuYDEgeO7OBgmYOGi4CDWKaWxFyOsvROjEpDfG0PcS4hMoosJgt6kgXYvTLGvxDKU2Dej5hxquSE-C7g4jDhZu2eT7Te-PXkV86mPE6umIx0LjWTpFQQU6_W7mw3cQNEuwbaFifub08IBI2xUHUmarZVbYlxJ53UrYdkXIln07eHDiBnFKeMfgB69wllgOU1w_ggVnbjkCtvmBnd_XvPUNbolA9M9OFonTFlc1-p0dYq_Xkp8XbI_PegMZjZmcmBHGkoiJ84r1qiIs3xdzvDPh6lhRexFphAaelf89X_cKksMnl6L_wTqMPSBXeqgFW4pVP3I1TrJzPfG_hNTkFrTmqUR4wcOxCIHQ6rbtOa_agN3op7bxww4hAgaahiTNxY_y8ium1jZirLE-Tp1mFhV4OgUh8w3rBiUEd4XFs66XF-cf6pUJSMEbgdQWs7ViztNxQtoCjkOKjtGK1ccBTr3Hd9N6q2af5jIeJVyQNcCLgcSw-C9vWEk0l8qnWHuFFwrPsNEwr_OAnC11oOHXlQ8tGoGNEDZxfxp8cg-VIMOMl1OBSiK8NcKGGaU4rDjKGmP8aBB74q_QeYX6nrnOr7JCmJ_lFnMg; ph_phc_FItzF9gSMWU3vk8no368BnUuVqhnOk222NachQaLs2w_posthog=%7B%22distinct_id%22%3A%22gergo.bacskai%40datamc.com%22%2C%22%24sesid%22%3A%5B1754728275810%2C%2201988def-973f-7bcb-a09e-51011c5cd915%22%2C1754727946047%5D%2C%22%24epp%22%3Atrue%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22https%3A%2F%2Fdatamc.projectworksapp.com%2FProject%2FBudget%2F55%22%2C%22u%22%3A%22https%3A%2F%2Fdatamc.projectworksapp.com%2FAccount%2FLogin%22%7D%7D"
+    }
+  },
+  "meta": {
+    "templateId": "2866",
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "cfa4c88d-e8d8-4600-9244-bdd132acfee7",
+  "triggerCount": 0,
+  "tags": [
+    {
+      "createdAt": "2025-08-12T00:28:29.158Z",
+      "updatedAt": "2025-08-12T00:28:29.158Z",
+      "id": "NhKI3ivF74Mn13JL",
+      "name": "datamc"
+    }
+  ]
+}
