@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-08T00:55:50.812Z",
-  "updatedAt": "2025-08-14T02:37:10.000Z",
+  "updatedAt": "2025-08-17T14:27:38.301Z",
   "id": "LjkYMC2y52Jco72g",
   "name": "DataMC Project Info collection",
   "active": false,
@@ -12,7 +12,7 @@
       "name": "When clicking ‘Test workflow’",
       "type": "n8n-nodes-base.manualTrigger",
       "position": [
-        -96,
+        -288,
         720
       ],
       "typeVersion": 1
@@ -1642,39 +1642,6 @@
     },
     {
       "parameters": {
-        "operation": "select",
-        "schema": {
-          "__rl": true,
-          "value": "datamc",
-          "mode": "list",
-          "cachedResultName": "datamc"
-        },
-        "table": {
-          "__rl": true,
-          "value": "dm_projects",
-          "mode": "list",
-          "cachedResultName": "dm_projects"
-        },
-        "returnAll": true,
-        "options": {}
-      },
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.6,
-      "position": [
-        -96,
-        1664
-      ],
-      "id": "1cd7d17c-fb8b-492c-beeb-b7816a2253d7",
-      "name": "Select rows from a table2",
-      "credentials": {
-        "postgres": {
-          "id": "HZrppzqmklIpMmON",
-          "name": "Postgres account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "operation": "upsert",
         "schema": {
           "__rl": true,
@@ -2600,6 +2567,21 @@
       ],
       "typeVersion": 4.2,
       "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "path": "datamc_collector",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -288,
+        448
+      ],
+      "id": "bd413dce-62b4-4bb7-8ec5-fe1e3af02b4e",
+      "name": "W datamc_collector",
+      "webhookId": "b70325c6-4e0b-4531-a48e-50b35b4efbe2"
     }
   ],
   "connections": {
@@ -3195,6 +3177,27 @@
           }
         ]
       ]
+    },
+    "W datamc_collector": {
+      "main": [
+        [
+          {
+            "node": "Projectworks Cookie",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Projects1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Select rows from a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -3211,7 +3214,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "cfa4c88d-e8d8-4600-9244-bdd132acfee7",
+  "versionId": "77a873e9-a879-40f5-966a-f003736a336e",
   "triggerCount": 0,
   "tags": [
     {
