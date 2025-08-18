@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-15T15:57:11.183Z",
-  "updatedAt": "2025-08-15T16:08:43.491Z",
+  "updatedAt": "2025-08-18T06:20:37.836Z",
   "id": "98z8Zu7ul4coV1Fj",
   "name": "Start Workflow from Webhook",
   "active": true,
@@ -78,7 +78,14 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "33156a53-d320-466d-8ebd-5d186224e285",
+  "versionId": "a2bac9c4-b198-4951-ab6a-3d930c0dbcab",
   "triggerCount": 1,
-  "tags": []
+  "tags": [
+    {
+      "createdAt": "2025-08-18T06:20:36.169Z",
+      "updatedAt": "2025-08-18T06:20:36.169Z",
+      "id": "bv8PBjsr58ABgAtE",
+      "name": "global"
+    }
+  ]
 }
