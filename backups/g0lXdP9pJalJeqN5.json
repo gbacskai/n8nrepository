@@ -1,10 +1,10 @@
 {
   "createdAt": "2025-08-07T14:48:26.111Z",
-  "updatedAt": "2025-08-07T14:48:26.111Z",
+  "updatedAt": "2025-08-18T05:43:48.374Z",
   "id": "g0lXdP9pJalJeqN5",
   "name": "Meetup Registration System with PostgreSQL Database & Interactive Giveaway Tool",
   "active": false,
-  "isArchived": false,
+  "isArchived": true,
   "nodes": [
     {
       "id": "76bd011c-3ace-4094-8fa0-bac818192d9a",
@@ -533,7 +533,7 @@
     "templateId": "5758"
   },
   "pinData": null,
-  "versionId": "de157ee9-8a12-4441-9f86-0a5ceb45ffba",
+  "versionId": "d6e675b7-7c4a-4fba-b80e-391bbb0d09d3",
   "triggerCount": 0,
   "tags": []
 }

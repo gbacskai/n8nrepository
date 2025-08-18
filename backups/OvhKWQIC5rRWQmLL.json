@@ -1,8 +1,8 @@
 {
   "createdAt": "2025-08-15T16:00:02.030Z",
-  "updatedAt": "2025-08-15T16:00:02.030Z",
+  "updatedAt": "2025-08-18T04:52:47.482Z",
   "id": "OvhKWQIC5rRWQmLL",
-  "name": "dummy",
+  "name": "Meeting Summarizer",
   "active": false,
   "isArchived": false,
   "nodes": [
@@ -11,23 +11,121 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        0,
-        0
+        -272,
+        -64
       ],
       "id": "2c6a2c16-c462-47a2-9972-bb5f2d0a802f",
       "name": "When clicking ‘Execute workflow’"
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+        "command": "cd /home/gbacs/apps/;\nrm -rf srt-merge;\ngit clone https://github.com/ElevenZwei/srt-merge.git;\ncd srt-merge; npm install;\ncp /mnt/downloads/recordings/*.txt .;\ntouch record1.txt;\ntouch record2.txt;\ntouch record3.txt;\ntouch record4.txt;\ntouch record5.txt;\nscripts/merge-script.js record1.txt record2.txt -o -f recording1.srt;\nscripts/merge-script.js recording1.srt record3.txt -o -f recording2.srt;\nscripts/merge-script.js recording2.srt record4.txt -o -f recording3.srt;\nscripts/merge-script.js recording3.srt record5.txt -o -f recording.srt;\ncp ./recording.srt /mnt/downloads/recordings;"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        -64
+      ],
+      "id": "f5e4897e-44bb-4b35-877c-1865019bda2a",
+      "name": "Execute Command"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/mnt/downloads/recordings/recording.srt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        176,
+        -64
+      ],
+      "id": "f6602d73-0e48-4c32-943a-da37cf90c9a7",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -64
+      ],
+      "id": "c793a6ab-4d92-481e-a6fd-6d2184487dea",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data }}",
+        "options": {
+          "systemMessage": "You are a meeting organiser agent,output in HTML"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        624,
+        -64
+      ],
+      "id": "c5f88ac4-8498-4bb5-9978-26289efffc39",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "openai/gpt-oss-20b",
+          "mode": "list",
+          "cachedResultName": "openai/gpt-oss-20b"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        696,
+        160
+      ],
+      "id": "a80cc7cd-568e-41be-abc1-6766b0902c33",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "f7w1w21IJI9gIfih",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/mnt/downloads/recordings/recording.html",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        -64
+      ],
+      "id": "09e71a2c-f325-44b4-a392-05665688556d",
+      "name": "Read/Write Files from Disk1"
+    },
+    {
+      "parameters": {
+        "jsCode": "items[0].binary = {\n  data: {\n    data: new Buffer($input.first().json.output.replace('```html','').replace('```','')).toString('base64')\n  }\n};\nreturn items;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        208,
-        0
+        976,
+        -64
       ],
-      "id": "1b438c10-ab2a-4369-85fb-70f2b564ab44",
+      "id": "30b1bf14-4d45-4dad-a0f1-925e8de5582b",
       "name": "Code"
     }
   ],
@@ -36,7 +134,73 @@
       "main": [
         [
           {
+            "node": "Execute Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Command": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
             "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk1",
             "type": "main",
             "index": 0
           }
@@ -48,9 +212,11 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "pinData": {},
-  "versionId": "203514b6-0eb4-48c7-8218-3907a1945add",
+  "versionId": "85e509bd-7c3c-4fd4-b766-0acade66e990",
   "triggerCount": 0,
   "tags": []
 }

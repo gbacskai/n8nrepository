@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-08T00:55:50.812Z",
-  "updatedAt": "2025-08-17T14:27:38.301Z",
+  "updatedAt": "2025-08-18T05:21:43.381Z",
   "id": "LjkYMC2y52Jco72g",
   "name": "DataMC Project Info collection",
   "active": false,
@@ -12,7 +12,7 @@
       "name": "When clicking ‘Test workflow’",
       "type": "n8n-nodes-base.manualTrigger",
       "position": [
-        -288,
+        -400,
         720
       ],
       "typeVersion": 1
@@ -2570,18 +2570,29 @@
     },
     {
       "parameters": {
-        "path": "datamc_collector",
+        "method": "POST",
+        "url": "https://asd234fsdffg.asuscomm.com:5678/webhook/workflow",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"workflow_id\" : \"1zHb2baSRH85ujYA\"}",
         "options": {}
       },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
       "position": [
-        -288,
-        448
+        128,
+        1776
       ],
-      "id": "bd413dce-62b4-4bb7-8ec5-fe1e3af02b4e",
-      "name": "W datamc_collector",
-      "webhookId": "b70325c6-4e0b-4531-a48e-50b35b4efbe2"
+      "id": "254192fc-f3d8-43c4-9a0c-6d0bfb76ca05",
+      "name": "Start Update Blocked Resons",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "hFhObbZejf9othAX",
+          "name": "Header Auth account"
+        }
+      }
     }
   ],
   "connections": {
@@ -2600,6 +2611,11 @@
           },
           {
             "node": "Select rows from a table1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Start Update Blocked Resons",
             "type": "main",
             "index": 0
           }
@@ -3177,27 +3193,6 @@
           }
         ]
       ]
-    },
-    "W datamc_collector": {
-      "main": [
-        [
-          {
-            "node": "Projectworks Cookie",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Get Projects1",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Select rows from a table1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "settings": {
@@ -3214,7 +3209,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "77a873e9-a879-40f5-966a-f003736a336e",
+  "versionId": "6c4ecf68-4ec8-4345-ae03-1e9223a5734c",
   "triggerCount": 0,
   "tags": [
     {

@@ -1,10 +1,10 @@
 {
   "createdAt": "2025-08-07T14:54:22.345Z",
-  "updatedAt": "2025-08-08T14:43:06.000Z",
+  "updatedAt": "2025-08-18T05:44:09.315Z",
   "id": "J8W14paCsNB9eYnH",
   "name": "Chat with local LLMs using n8n and Ollama",
   "active": false,
-  "isArchived": false,
+  "isArchived": true,
   "nodes": [
     {
       "parameters": {
@@ -113,7 +113,7 @@
     "templateId": "2384"
   },
   "pinData": {},
-  "versionId": "17538598-8ba8-4bc6-a7d9-feac712eea87",
+  "versionId": "00d67684-df77-4428-883b-7f0942146e36",
   "triggerCount": 0,
   "tags": []
 }

@@ -1,10 +1,10 @@
 {
   "createdAt": "2025-08-07T14:58:58.304Z",
-  "updatedAt": "2025-08-07T14:58:58.304Z",
+  "updatedAt": "2025-08-18T05:43:54.098Z",
   "id": "3eVjDpThe3t2FqJ5",
   "name": "Scrape Latest Github Trending Repositories",
   "active": false,
-  "isArchived": false,
+  "isArchived": true,
   "nodes": [
     {
       "parameters": {},
@@ -258,7 +258,7 @@
     "templateId": "2866"
   },
   "pinData": {},
-  "versionId": "86195d7e-a5e1-4641-b640-2585537350f5",
+  "versionId": "dfac3ef7-d1a3-40a0-9695-b6945d889bbc",
   "triggerCount": 0,
   "tags": []
 }

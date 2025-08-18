@@ -1,10 +1,10 @@
 {
   "createdAt": "2025-08-08T03:15:02.940Z",
-  "updatedAt": "2025-08-08T03:15:02.940Z",
+  "updatedAt": "2025-08-18T05:43:58.902Z",
   "id": "qgr6OmZg0yWEGGIQ",
   "name": "Extract emails from website HTMLs",
   "active": false,
-  "isArchived": false,
+  "isArchived": true,
   "nodes": [
     {
       "parameters": {
@@ -258,7 +258,7 @@
     "templateId": "2134"
   },
   "pinData": {},
-  "versionId": "4ec2502b-8487-4bc2-a0e5-1c0889f14169",
+  "versionId": "651a11bc-1895-47db-a3f5-890f736634f5",
   "triggerCount": 0,
   "tags": []
 }

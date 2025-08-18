@@ -1,9 +1,9 @@
 {
   "createdAt": "2025-08-11T03:55:47.119Z",
-  "updatedAt": "2025-08-15T00:48:03.000Z",
+  "updatedAt": "2025-08-18T05:36:35.732Z",
   "id": "1zHb2baSRH85ujYA",
   "name": "U workitem with object and blocked",
-  "active": false,
+  "active": true,
   "isArchived": false,
   "nodes": [
     {
@@ -12,7 +12,7 @@
       "typeVersion": 1,
       "position": [
         -1136,
-        -1100
+        -1104
       ],
       "id": "0b45d5f5-b98c-4d08-8a71-e86151fef833",
       "name": "When clicking ‘Execute workflow’"
@@ -47,7 +47,7 @@
       "typeVersion": 2.6,
       "position": [
         -912,
-        -1100
+        -1104
       ],
       "id": "76092389-2f1b-47be-9188-8cfe3964418a",
       "name": "select Projects",
@@ -92,7 +92,7 @@
       "typeVersion": 2.6,
       "position": [
         -688,
-        -1100
+        -1104
       ],
       "id": "9d5b91d0-4d8c-4bd0-b474-7d82e1cf4b45",
       "name": "Get workitems from Azure Devops",
@@ -164,7 +164,7 @@
       "typeVersion": 2.2,
       "position": [
         1552,
-        -1224
+        -1232
       ],
       "id": "146aff02-0205-4dee-aba1-7c75275c2108",
       "name": "AI Agent"
@@ -184,8 +184,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        1560,
-        -1000
+        1568,
+        -1008
       ],
       "id": "63c9219a-0108-4866-9c22-e60821d30f86",
       "name": "OpenAI Chat Model",
@@ -206,7 +206,7 @@
       "typeVersion": 3.2,
       "position": [
         1104,
-        -1224
+        -1232
       ],
       "id": "438038a8-bb7a-4225-8795-3cafb9672009",
       "name": "Merge1"
@@ -271,7 +271,7 @@
       "typeVersion": 1,
       "position": [
         880,
-        -1028
+        -1024
       ],
       "id": "1eff8d3b-3d6c-4e7f-814e-44c46c0af933",
       "name": "Aggregate1"
@@ -284,7 +284,7 @@
       "typeVersion": 2,
       "position": [
         656,
-        -1028
+        -1024
       ],
       "id": "cdb84960-c1e2-4f61-ab99-c1a3b2c0b67a",
       "name": "Code1"
@@ -297,7 +297,7 @@
       "typeVersion": 2,
       "position": [
         1904,
-        -1224
+        -1232
       ],
       "id": "d1123620-5fbf-410b-b259-e8ff613773d7",
       "name": "Code2"
@@ -310,7 +310,7 @@
       "typeVersion": 3,
       "position": [
         -16,
-        -1100
+        -1104
       ],
       "id": "8c1ed890-f290-4d1b-bb07-bce59a772b42",
       "name": "Loop Over workitems"
@@ -581,7 +581,7 @@
       "typeVersion": 2.6,
       "position": [
         432,
-        -1028
+        -1024
       ],
       "id": "945de038-3657-4251-9495-62c34f2dd5cb",
       "name": "Get WOM Objects",
@@ -631,7 +631,7 @@
       "typeVersion": 2.2,
       "position": [
         -240,
-        -1100
+        -1104
       ],
       "id": "5263d425-3676-4ada-8737-65dce15abdf3",
       "name": "Object Creation or Issue"
@@ -666,7 +666,7 @@
       "typeVersion": 2.6,
       "position": [
         208,
-        -1028
+        -1024
       ],
       "id": "6f564a4a-94a5-4a74-bbf8-7efb9d26d745",
       "name": "select Projects1",
@@ -706,7 +706,7 @@
       "typeVersion": 2.2,
       "position": [
         2128,
-        -1224
+        -1232
       ],
       "id": "da5ccc92-640f-4cfd-8a47-f554fe9ba56e",
       "name": "Blocked"
@@ -721,7 +721,7 @@
       "typeVersion": 2.2,
       "position": [
         2352,
-        -1224
+        -1232
       ],
       "id": "ca464239-2d32-42aa-a286-c0392737f51f",
       "name": "AI Agent1"
@@ -741,8 +741,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        2424,
-        -1000
+        2432,
+        -1008
       ],
       "id": "660ed016-d375-4e51-b1c4-425168a11e91",
       "name": "OpenAI Chat Model1",
@@ -978,7 +978,7 @@
       "typeVersion": 2.6,
       "position": [
         2928,
-        -1224
+        -1232
       ],
       "id": "b9577d29-78a6-4216-9bdc-94621072a84f",
       "name": "Get workitems from Azure Devops2",
@@ -997,7 +997,7 @@
       "typeVersion": 2,
       "position": [
         2704,
-        -1224
+        -1232
       ],
       "id": "b8649d34-8b3f-458a-8078-f74a752ab40c",
       "name": "Code3"
@@ -1313,7 +1313,7 @@
       "typeVersion": 2.2,
       "position": [
         -464,
-        -1100
+        -1104
       ],
       "id": "b9819709-f4b2-4f88-9b12-4adb387d785c",
       "name": "Debug",
@@ -1326,8 +1326,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.3,
       "position": [
-        1688,
-        -1000
+        1696,
+        -1008
       ],
       "id": "7d6144d9-ec3a-4652-8e55-b5d9bf9e504c",
       "name": "Postgres Chat Memory",
@@ -1347,10 +1347,25 @@
       "typeVersion": 2,
       "position": [
         1328,
-        -1224
+        -1232
       ],
       "id": "5688aac0-2b5c-456f-8b5c-a17191660a7d",
       "name": "dessionId"
+    },
+    {
+      "parameters": {
+        "path": "update_blocked",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1136,
+        -1296
+      ],
+      "id": "b340ccdc-1553-4cbe-b865-819b79b58b1d",
+      "name": "Webhook",
+      "webhookId": "032358dd-5a8f-47f8-9bdb-044e6e5f682b"
     }
   ],
   "connections": {
@@ -1677,6 +1692,17 @@
           }
         ]
       ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "select Projects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -1687,8 +1713,8 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "c5758e6e-76b9-4076-b925-fa0841cba038",
-  "triggerCount": 0,
+  "versionId": "7cf5bed6-cc2b-46eb-a280-63994dbb70e9",
+  "triggerCount": 1,
   "tags": [
     {
       "createdAt": "2025-08-12T00:28:29.158Z",

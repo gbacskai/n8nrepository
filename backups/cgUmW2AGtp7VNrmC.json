@@ -1,10 +1,10 @@
 {
   "createdAt": "2025-08-07T14:12:50.576Z",
-  "updatedAt": "2025-08-07T14:19:19.000Z",
+  "updatedAt": "2025-08-18T05:43:33.826Z",
   "id": "cgUmW2AGtp7VNrmC",
   "name": "Demo: My first AI Agent in n8n",
   "active": false,
-  "isArchived": false,
+  "isArchived": true,
   "nodes": [
     {
       "parameters": {
@@ -107,7 +107,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "00e5d7ea-5193-42a5-96d9-5e51556ba38f",
+  "versionId": "7cb689fc-0e66-46ad-8b93-d5e61adcce1a",
   "triggerCount": 0,
   "tags": []
 }

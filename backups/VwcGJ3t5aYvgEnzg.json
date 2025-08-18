@@ -1,10 +1,10 @@
 {
   "createdAt": "2025-08-07T14:22:11.543Z",
-  "updatedAt": "2025-08-07T14:22:11.543Z",
+  "updatedAt": "2025-08-18T05:43:39.703Z",
   "id": "VwcGJ3t5aYvgEnzg",
   "name": "Transform Markdown Content into Structured Notion Blocks",
   "active": false,
-  "isArchived": false,
+  "isArchived": true,
   "nodes": [
     {
       "parameters": {
@@ -185,7 +185,7 @@
     "templateId": "5675"
   },
   "pinData": {},
-  "versionId": "086a7024-fbfd-4624-b68e-0d44c6ee7a57",
+  "versionId": "e225b798-ba7f-4dbd-a316-4c4679de0eb6",
   "triggerCount": 0,
   "tags": []
 }

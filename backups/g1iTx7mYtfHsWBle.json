@@ -1,10 +1,10 @@
 {
   "createdAt": "2025-08-08T14:05:34.172Z",
-  "updatedAt": "2025-08-08T14:05:34.172Z",
+  "updatedAt": "2025-08-18T05:44:03.463Z",
   "id": "g1iTx7mYtfHsWBle",
   "name": "Project Details",
   "active": false,
-  "isArchived": false,
+  "isArchived": true,
   "nodes": [
     {
       "parameters": {
@@ -134,7 +134,7 @@
   "staticData": null,
   "meta": null,
   "pinData": null,
-  "versionId": "b2cd3ed9-f425-45cd-823d-a42fc5c13398",
+  "versionId": "76ef65f1-b287-46b5-92e5-130b39ef35c4",
   "triggerCount": 0,
   "tags": []
 }
