@@ -1,0 +1,77 @@
+{
+  "createdAt": "2025-08-19T04:40:13.066Z",
+  "updatedAt": "2025-08-19T04:40:13.066Z",
+  "id": "pzfoiHGXVUtrserx",
+  "name": "My workflow 5",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "databaseId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.notionTrigger",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        -80
+      ],
+      "id": "0224a602-c67d-4b3c-911f-0564290c15cf",
+      "name": "Notion Trigger",
+      "credentials": {
+        "notionApi": {
+          "id": "m9rU6VvoHCxXcBvC",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -112,
+        -80
+      ],
+      "id": "553ace49-2850-4b91-b9bd-37e58208147c",
+      "name": "Code"
+    }
+  ],
+  "connections": {
+    "Notion Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "47666aa4-786c-41d9-9c76-3ba7368f0a2e",
+  "triggerCount": 0,
+  "tags": []
+}

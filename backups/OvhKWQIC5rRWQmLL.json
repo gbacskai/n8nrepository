@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-15T16:00:02.030Z",
-  "updatedAt": "2025-08-18T06:19:39.321Z",
+  "updatedAt": "2025-08-19T04:38:54.463Z",
   "id": "OvhKWQIC5rRWQmLL",
   "name": "Meeting Summarizer",
   "active": true,
@@ -50,7 +50,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $json.data }}",
+        "text": "={{ $json.item.json.data }}",
         "options": {
           "systemMessage": "You are a meeting organiser agent,output in HTML"
         }
@@ -58,7 +58,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        624,
+        832,
         -64
       ],
       "id": "c5f88ac4-8498-4bb5-9978-26289efffc39",
@@ -77,7 +77,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        704,
+        912,
         160
       ],
       "id": "a80cc7cd-568e-41be-abc1-6766b0902c33",
@@ -92,13 +92,13 @@
     {
       "parameters": {
         "operation": "write",
-        "fileName": "/mnt/downloads/recordings/recording.html",
+        "fileName": "={{ '/mnt/downloads/recordings/recording-' + new Date().toISOString().replace(/-|T|:|\\..+/g, '').slice(0, 14) +'.html' }}",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        1200,
+        1408,
         -64
       ],
       "id": "09e71a2c-f325-44b4-a392-05665688556d",
@@ -111,7 +111,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        976,
+        1184,
         -64
       ],
       "id": "30b1bf14-4d45-4dad-a0f1-925e8de5582b",
@@ -142,6 +142,19 @@
       ],
       "id": "2c6a2c16-c462-47a2-9972-bb5f2d0a802f",
       "name": "Click"
+    },
+    {
+      "parameters": {
+        "jsCode": "$input.first().json.data = $input.first().json.data.replace(/\\d+\\n\\d{2}:\\d{2}:\\d{2},\\d{3} --> \\d{2}:\\d{2}:\\d{2},\\d{3}\\n/g, '').replace(/\\n\\n/g,'\\n');\n\nreturn $input;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        608,
+        -64
+      ],
+      "id": "14e32ef2-1f38-4e39-b5ad-bdb7f47d2ce3",
+      "name": "Code1"
     }
   ],
   "connections": {
@@ -171,7 +184,7 @@
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Code1",
             "type": "main",
             "index": 0
           }
@@ -232,6 +245,17 @@
           }
         ]
       ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -242,7 +266,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "03d820e6-e4ea-4387-99b8-da9e980b445f",
+  "versionId": "0a415243-ca5e-4f04-a85d-d3afc056eb4e",
   "triggerCount": 1,
   "tags": []
 }
