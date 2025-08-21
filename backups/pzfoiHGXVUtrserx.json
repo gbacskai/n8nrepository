@@ -73,5 +73,23 @@
   "pinData": {},
   "versionId": "47666aa4-786c-41d9-9c76-3ba7368f0a2e",
   "triggerCount": 0,
-  "tags": []
+  "tags": [],
+  "shared": [
+    {
+      "createdAt": "2025-08-19T04:40:13.066Z",
+      "updatedAt": "2025-08-19T04:40:13.066Z",
+      "role": "workflow:owner",
+      "workflowId": "pzfoiHGXVUtrserx",
+      "projectId": "FlFnx4GL1IzMIs6I",
+      "project": {
+        "createdAt": "2025-08-15T14:30:31.525Z",
+        "updatedAt": "2025-08-15T14:30:55.517Z",
+        "id": "FlFnx4GL1IzMIs6I",
+        "name": "Gergo Bacskai <gbacskai@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null
+      }
+    }
+  ]
 }
