@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-15T15:57:11.183Z",
-  "updatedAt": "2025-08-18T06:20:37.836Z",
+  "updatedAt": "2025-08-25T01:15:24.433Z",
   "id": "98z8Zu7ul4coV1Fj",
   "name": "Start Workflow from Webhook",
   "active": true,
@@ -17,8 +17,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -608,
-        -144
+        -912,
+        -192
       ],
       "id": "5a017c7a-7411-46b1-95a0-9c23c57a419d",
       "name": "Webhook",
@@ -44,8 +44,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        -320,
-        -144
+        -624,
+        -192
       ],
       "id": "936799b2-558c-4849-854c-46bcd241aaec",
       "name": "Execute Workflow"
@@ -78,7 +78,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "a2bac9c4-b198-4951-ab6a-3d930c0dbcab",
+  "versionId": "f14673f4-e757-4263-a527-afcf9c85d55f",
   "triggerCount": 1,
   "tags": [
     {
