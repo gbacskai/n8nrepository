@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-08T00:55:50.812Z",
-  "updatedAt": "2025-08-18T06:16:51.339Z",
+  "updatedAt": "2025-08-31T10:03:14.798Z",
   "id": "LjkYMC2y52Jco72g",
   "name": "DataMC Project Info collection",
   "active": true,
@@ -70,7 +70,8 @@
         1056
       ],
       "typeVersion": 4.2,
-      "alwaysOutputData": false
+      "alwaysOutputData": false,
+      "disabled": true
     },
     {
       "parameters": {
@@ -1291,7 +1292,8 @@
           "id": "X11V0xBEimJlSfgL",
           "name": "Postgres account 2"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -3218,7 +3220,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "f35ef70d-55c5-42fa-924c-e05602a51184",
+  "versionId": "5d27f8a3-9307-4235-b0e8-9189ae031e07",
   "triggerCount": 1,
   "tags": [
     {
