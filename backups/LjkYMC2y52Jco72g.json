@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-08T00:55:50.812Z",
-  "updatedAt": "2025-08-31T10:03:14.798Z",
+  "updatedAt": "2025-09-07T10:53:41.373Z",
   "id": "LjkYMC2y52Jco72g",
   "name": "DataMC Project Info collection",
   "active": true,
@@ -75,7 +75,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const worklfowStaticData = $getWorkflowStaticData('global')\nworklfowStaticData.ProjectWorksCookie = \"$$A_U_ID=c8b77f7d-2884-4830-8393-4eb9427a64df; TiPMix=8.223556721272885; x-ms-routing-name=self; pws=CfDJ8PByodJIE6BLt528%2F9yXbQ0BDWN8dYPfW7s6rStHNWtimxet1a0GWTl%2B92TSdx5zrBX7rDZ%2BgtYZ0mp4FLNpIG2YfSotMMvawbtyzcOpF6WGAbI5mXG1rxkHswCyjZv%2FRDgmaSh1hd0WO6SRhbJDLHaBNGtoA1hPhRGXxA%2BDksHP; ARRAffinity=3bf8829b4314cc88291bac4130bb39f2498ea1af76e709ccc5192f2a63139759; ARRAffinitySameSite=3bf8829b4314cc88291bac4130bb39f2498ea1af76e709ccc5192f2a63139759; TiPMix=24.399584671406515; x-ms-routing-name=self; Identity.External=chunks-2; Identity.ExternalC1=CfDJ8PByodJIE6BLt528_9yXbQ3VLDuwjnlLI0j51dZJwvMMK9nFMqK8bset9Rc9Y2uqRd3_s_mGLHR3sdmiZo1mOYlIZofSl7C3Nd9RV4-jAfUBD478Byrk2e4st3GxSbvHsNEAPXFYxSGAbTCdPHkxYcAdDFOlk73Y3oHs5dzFHUIBN44Knt2L6hU20zGiMfydOSeV0VYXKfGlgngzW6Py-SWhwer93l2vMUdJEa3GgA-Um0e7JdCin5iJgIFKvxbj_xmBz2xeirAVUnvhP7kJSqNmWNA_i-q49fVXnN-c8XvKjpcph6I85eQ7SXRddtVgCvq1hKq5cO7rE6aHwQi8RGMfljGTKNkmXqFXsINKa9-pEz2CDYgic6adBKy3nZGXYUO_Nsfs11OPYhqiRr3NkBae2055614zgSfRhSVQw8Z4Sj0_nR924r0jGhHIOtEGEKiMLtd0GF0K990mtzSNYW6gQD0ve5KaAXnCiCsWdoCz4oxc0ho-E89Z1dXBz3-xPq3Y5X4f59evu4jDCvssYhVRZYtgzXy86t5iEA8lhzcP0TYXkCjRUfxLPGjLfFb8iwqg7bRavYLdaeLiw7k59DgD99U__iqwGoV1u5L136Se3fxafpvs2Yak0YfqmdEZLsGG2tNo3u26rDjHHhnZeJFpeLv7_obcx24Zizs7v_Me7ST1HeQU5Ao13A82ReH7VxPzgRCuAlOOpcvAtNHGEyvHuQR0Zb6P0Kn9C4Zaj4xNA-LMKnJyRTuLi7P4jP1CwFmfeq_fSZgkx21cm2fu8CwXyi4av29zBMJbXGWBrUEn3NvGYuyGOMCDKWcX8JFQHHPOLiMw-FmQEwEETVBsqBdNc6yzKmY2vUA0R9gJUWncAg1J_7D4eyOStf4kWzJCF3l_QsoUekgLuOmLZwEi5nWcBxi-UmPF8a4FohYqzOMLkZhGLaFopdGQ2zxsCoCKyIp4lIHjXXPrVcW0_69htnQYMG7KlVLzknyLbbv9XRCEW8KvPesf5m-OynqYkIXIP_t_FJzaaZnJ7KO30sDoNT4E6HrKl_0xVr9LZMmEtHz4M3UodiJeSR3M2K1MIAHxmkoKVKrqBm6_9HOGNYolqfJ7V4X4s_nSltXu4T5zfA5K1XKbLbnFj_tj9nVPoagcOCMCURDAx-ubigNloecOjMFrCMDBx1NJmiB7ya4VTn2HOkH6rN5kRxvLVJAMMsUUKO7MPePI_A_fP7fH5Fq0RahyYmGDIu1Nh4etIx11z6QAHBun7RDUpV3zPzDpzQhcsy9d7L9BfCggmyvsHw7vmsG0DGBBwjqSW_3jFM1OAltRMG05fJFSaoB18Y79stnwz54-HrdwFVvg_EDBa6F4zd22aT8pNBR6noITKoye5HCWKNDTKgB8XfghVczQPQAN0G3WycGs_X2VtYjLIbF87krbhrkNuKirlyiTmwrxiVW_f-VGba8pe8OgiAkV4ZGvF5MVgZpqCRGhVEsosDm3I4Ojsz9gorG087K7l2N9QZepAO2iP_uWD3_qFC9mFapxDo8_zNK0Ve6C9fSDh7jvoiVFeIcDofG6OhAheaffVU_4mzxOEcuDAyTtscxH4XrUC_RT57GAgojyTYYmuSBuMLjFvpVhmkx4lquB89e_izv9eKhI4IENOAwKxgVqlD9NVsfmQuQuDvme-s68tzWJN1TwxgtlOCBjqbXVasIGDlYvCGowRG7k3-a2DqKAw1Fwt2HCf024QIZe54V8yfi6Y_-wZC7DFf-dm9XvOGiYmh4h8vWg3iDP9ny6OQ-rZHbauBYdY8fALFuVQGkjZfJRIPC1w1DONBQojX4mHa_wY8RMAdfU17Ud4T7RQD5iDde_BH5LTw4TPQyjR2NsMZ0d9-_PU1KwLVzZ9jBcZ8DzyZRfveeXvVXvvqGyYS-zL5S4KJVnjL5-HP7MMuie4GhDaNLl3rXGalXj7sYzldhJy1QoxkdynMAnPquOznt53uRYunsbK_9jRGhP10ADAv2Q3ti6y9Gds33ZGhHdHRoH1io15IsWjQY9vgXijnDQGBnv7_CNTPcmVeyZd-X1ShBguQMAJhKkU7h7jFY-T19WvlTO5zr0ZbpIbGkxD0JRjIoGjt0vhq9WpFgfzvavMfhGUa0wZJ4DbC4tRn19MiPQVAaOnYDafkbfAhb54RlxFEgrt5IF2lhrCVTzhAvJ4gjn3lbR8LJzIqEXQnVP1BzciY3L3v9055NtNIOzQXDT47DYRtFzEhdx3b9OXEaPaq3MlgQSBIEHpoR5NoUQrQgky2nZBLBfYXLJ2rpfuHrV32eB6a8VvqimMjgULvrOcVWbGbndWmxQbID3gaKzIy8-Cnv3Fm4feplcKEmvWzUD9n5NB-rTLFytbdo0cQ8gqtcvnX9sfYyGZJjxao5IHeyelvwbjMC5SyLbSP3FFI52RqSqnDoANGQvTFFEWLDR-r8eYkv_Qt9MSMYBpcLOliRjoZTFlHgU47nEmZgVAw0Y_OfvS141V6n0xJ5bcpFGGWB63XNwGSM4Es2CmooVkK1BG7hdzgbjORDOwg1WoNXr8cq_f0Ek8XASjaZ3MeJAwPgnbld9oroK5JsduRjwpXta3nUz1lyEWcN7oWm0etEeeVe4G3YihMvTICK1Rk8o59slEF9h7728Cl27e6wwSJWOZpjvp_C4M29GmdgrYMdfyyosyhZjHm6smYKwQs8yOO1iseOev0ydibnEHpAaFA_c1wZzP745UGk5JJ4yxx7--7s1IR4zAg8tU0vQL019zugWwscYO-TfIroHA49uKFhKqbYvZ4-5C_UkQByvfy8ftXSVlU_hr1XBOe6YirWA_CsdIRXMeOQpVRCLf7doEBfecJeaDvuFjvJCJtvkMs1HbakBtmNwSavprcLZzbeZyeYIJhN_kVILOwdhr6fqHYFZ3xaEw-v1vYly_Kcx7B6FFYWUjwlP868cCATDDpYbzpmW6gx4yfahtjnhjAiH9_gXUgb2gOeDdxuKqj_qcHnZJe3aw15y9eaTFkyV0rzs-Pa_ByvE6nbCPrJTK8oILOkah5BPx2O1b9cQ1pWzCI24tcmtD8LeYBl-l-oGSLpUBZtQJrAefacoX-CwxBf9ehA7AMLPoijJyDT8yJc66s5A9syl1seKxgslYjKzamdJjf8PpSIbmX1qElvRsORGxwq-iHlUe-dKoWMiqGTSz6ZknrHDsGIFVF2Ve9kBmoUTixRHrVXzRYJGpPvigDQP6G5SrC7tnE-7AnZEDyvQpikB0v0gER4fpJgG6_k4VNtjrtl7h3Zk1JOYsLGIQ0PIkgNXgZg9PQzw7vxuSuAjIxcN4DcHqyMqXGjyEpU1tj5AQUQDYzj3ObxhaFkuRJGVk7tRl0amw96dzb830bvOpGIvEDkNNE-0tONH-yjjGnUF0eemqcUkyrCpfGAZRx7LEJh3IPEULlLXOorxFUYU161qQ8AsyVeCGRAWYOdw2xYq0mKlVLQ7zTfMPrwaHrMoWk_tTrsVKoXFwUiaonJWOiVoX35YibOQhmtaT4TUSwb3Tu3vO1zp-lqP1RQFVtGvtF-CY9fOkNnbRbd9Fc0_2k90ggzoEOdxr75XifB8tUSild5y_QZdfYcuqsofy_EPFQ7HvoxFtwU2somnhCOGK2r0R-QIgNXbwR0n-XxkVmkX150chXRBO9RHO6-wfaqYK1YNFZc76vScTRXJ9Q_rujOSNYZzCsPmo1fiPMkUpM1I4AqqqC-JQBGpkTAmg_hElG6Nth_wUa-j5Oa72dq-WMGpfvc_oEpdJ-KUmLGIhR_b9pCRH25Dqy5xScWskCTIV2W0i4DBoUBdg2ytSG4uYO8ChvSLoPlyIGLRnCBu-spcRalzJ5XN8G6eh8tICG8qq6RLip0XorBO3fNvnkTkI3ZiWMgIwG82QLhBMHYL5VwWQ5nw-HMYp8Dm5SW0aUF7fexsPpLz6d98ONam2; Identity.ExternalC2=WNraHXHoZCUfA; ARRAffinity=f402ed00886c6f0108d0d45475f30c4450fd71385d2cd70a4c2038470204e750; ARRAffinitySameSite=f402ed00886c6f0108d0d45475f30c4450fd71385d2cd70a4c2038470204e750; pwa=CfDJ8PByodJIE6BLt528_9yXbQ3nX4y-CYGJEPUNS9rd79Ew4DM_MJM2OrUHNu44C5-iEkJl7q4AXoO-0MfwdfxW91-9ywG0o1AHmIR3eTjQBA6Vu7ZSJMim_482DOzvObsofIT-skIA4YTbVieedklrBYzCGQ7-Stdm9p90Vci-8Q10Vhc5rNqOKGCEfX5H4fZfU6NDbftIzN-T56bzuZw-7uf3oh9Dq33Og42svUNdyrLBHICxGbahR8Q_KRVvze33qKO-TrbuawBBd1hJb4S7vCHKnO39htTQDonaxcz8_wroH6yEWS9RbMB4s_DwmUPMaiKYpNu_V73rTqOqMcwZtBrjat0gbWrC3dbelh18I-Nnc-fx5cI5sdyENiuYDEgeO7OBgmYOGi4CDWKaWxFyOsvROjEpDfG0PcS4hMoosJgt6kgXYvTLGvxDKU2Dej5hxquSE-C7g4jDhZu2eT7Te-PXkV86mPE6umIx0LjWTpFQQU6_W7mw3cQNEuwbaFifub08IBI2xUHUmarZVbYlxJ53UrYdkXIln07eHDiBnFKeMfgB69wllgOU1w_ggVnbjkCtvmBnd_XvPUNbolA9M9OFonTFlc1-p0dYq_Xkp8XbI_PegMZjZmcmBHGkoiJ84r1qiIs3xdzvDPh6lhRexFphAaelf89X_cKksMnl6L_wTqMPSBXeqgFW4pVP3I1TrJzPfG_hNTkFrTmqUR4wcOxCIHQ6rbtOa_agN3op7bxww4hAgaahiTNxY_y8ium1jZirLE-Tp1mFhV4OgUh8w3rBiUEd4XFs66XF-cf6pUJSMEbgdQWs7ViztNxQtoCjkOKjtGK1ccBTr3Hd9N6q2af5jIeJVyQNcCLgcSw-C9vWEk0l8qnWHuFFwrPsNEwr_OAnC11oOHXlQ8tGoGNEDZxfxp8cg-VIMOMl1OBSiK8NcKGGaU4rDjKGmP8aBB74q_QeYX6nrnOr7JCmJ_lFnMg; ph_phc_FItzF9gSMWU3vk8no368BnUuVqhnOk222NachQaLs2w_posthog=%7B%22distinct_id%22%3A%22gergo.bacskai%40datamc.com%22%2C%22%24sesid%22%3A%5B1754728275810%2C%2201988def-973f-7bcb-a09e-51011c5cd915%22%2C1754727946047%5D%2C%22%24epp%22%3Atrue%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22https%3A%2F%2Fdatamc.projectworksapp.com%2FProject%2FBudget%2F55%22%2C%22u%22%3A%22https%3A%2F%2Fdatamc.projectworksapp.com%2FAccount%2FLogin%22%7D%7D\";\n\nreturn {worklfowStaticData}"
+        "jsCode": "const worklfowStaticData = $getWorkflowStaticData('global')\nworklfowStaticData.ProjectWorksCookie = \"ARRAffinity=a86535b770657fc87e9ff9dd19e8bf6a203c09d4d6efe576001ca2691f34b535; ARRAffinitySameSite=a86535b770657fc87e9ff9dd19e8bf6a203c09d4d6efe576001ca2691f34b535; Identity.External=chunks-2; Identity.ExternalC1=CfDJ8PByodJIE6BLt528_9yXbQ04jNieQhjFjj8OgjLC3djx8lwBBvjhGGkJct5O8b1KP12Gwz7zlwWA2t44fhxBjrOjd-0bSp-kljLumpQJpcDWMgNLcoNpobM-Rh4E8rxxKDjsMnfgy3-WPy8sXjd9aS_4sVU2Vehulejo9ETPbsqvuXeQRHQ0Rfs1UHCt0R8lCGRSZZ75v7dluT2mI-iba8eWdDkPTqH0C0vqh5Ebqjd1o2d8K6gPteHCNmVP0QucJx3GpIuJGx5_AQ1ioByfxenztBTizXle6FkwPYmiIhIXJg8RKPRjg6_QpgaksO1bLxxT4MusjLr-rVUrT5JV9IJUxn1Mau-uqj34_egEzI1Q4-Jl2bt6smRwACMIjU8KVDEn4lNA8RwDE9Fuvn9qh-K66e3GbwV53WN5c4ZYrcwRusDahK47nPY8CAfTJBEWeOZ5qn9ni96UUKmNWpjzLVEKKMT83Ze9vEAsK6a0Go46XN3qXgty98UGuEtiwA4u11vnzdkVJbaAZbLAhjmz_0vA6BESoSPZfFQ_Ms2XyplSyMYrOD4thb-lWtuSmc5YOb7i6jlA0NXA7MmbnH2mN5NGEInxiG0cjgJhvrCA4_Utf1u5YCjTyuLKlXzRYqqXZFZtGcyBcQytrAoVd0HLV_SA1Bdzv9v1vfYk8Fdi-hRO5LHkIRRgLB3YgRDcyDg47joRx0CVj1cZyl3h43vvOsArsigU7FLGRo8w84Rdlq6igfsR-GRLSinWAfDXoc9Bc_kzXKugwg9JunQ0FQtk7J4GOaN0rMI6bCG4uwh6-ppFfZSPX2cZy6bLqrHCsTjJZYwUJDXLMudFRAAWlYxXHrG6no3zi7IfUPgu8G4BbWG0us8DunjD6ECzOBvEX4428lQ2huI30m4nL9mZ8J6mVR5bU3DPfqQ7wLclvDapjbSzESoS--B-ZJMLPKv4-Dbj31tzAVYusUkZO1SdLygnBuAHGbuBQ1D6AcOonImrvEEklkskz0WqbO6Opcxjjq0LrHUYXQg22x6hxQpucqftbtgp6dO63xcd7nQpER3OPk7UPm0UG415cJJ3mgJcOa73FL667Zna6WatsmhJ1WYtO3XbAXR3kiPGxRUy4vydexz6R1741i5Gas0MPGbW26KufjP88dWzjknCLjI_jwboGqIv3mAmm2Dqs0Xytdz_jbfE60NS360wLGZbDCfTMi--3Nps6Vh5IyjyVLj5UkaHhuZ0QVNCZTIc8_MOdhhSIirw7kddmcckEZ15LESH7m15O1c34Hu01CdM0e9KK2Jix7-GvsMk5TbniMVPY0t4tXSeW8PDmQGNeYI1m-ZP3jL2DJJaK2SblPm8sym6S0AuQcoj0wHi6ODLisRtZ6wfeOk8hlx0yTpcvo_Tvplp0rw9JKrmSDVdF4LqGC3Frqp27R7wV13mcb0oTsB23qXYa6Kn3zFelLeqEz7rOILDVS4aI3hR2GnFZQsDf5VXTVtw0mOHo8B1BRcJEONr7nwd22SF5VRbQ5HoNsNYOO27DrjXypoRKr0nAFuQ_ZjvYb5s2VFMPl_tpGX96SSccvRNTOiQh_PaF3gmRDQweISYOoWFW9fpuc0pybyHPfw2HvYvEbCkUAKKC4px_kuaq0WhH20niXp9KB_wPpeYz7UmzQoyJjhF-B56LG5eV4x0kIeYSQ6rEXHCysK_ciHyN5RDWta_M_n0TaqO_YFEYOdf4_MtyKmcyb5Bq46RA_wnFx_dJC00gl7kWTJmljj36I6Jau_YWhpRaLVLoHhnVo76EofmOrscPAK9hW-m7qjdjeMvrDCsK5lEG0qlkuxlNfCjkzxVyANlxS6aduT7vmy9mjzRq-ps9pQAYmjtlEX1hTs9VgE5eu81GcXL78kKcHqyS6T2VPR07QcfMtfzOHglVXVB162fqtnwxM9NhamFmAqc5l69Y-jCGr391amAfGbgg7a9Lb1dvMN-MGBSARLWKtiJa1VEWz6wE4iVhFg_hziIPuBqP8n5MXo-zAZshtoIQOzcZbbxvDkZH6eQVs28_u1cJZBAyRSHohSMmsASWB-otQw9RwJNHsPuMlva_CdU6xHpB0xlCdnaocmd-GMR-f6kwWiOPbKfas_tFcPHnBII5taU5unmPFDyY0Y2BNA6kbnjB-lWFmLIX8nlGH2-26xrM9LeF4dkZdpOzKXob8gAGofv9v5Jpcv-C6uB0KWxDWEEC9itfwT1Tf-lwO-g8trYtPYxUzY565LUB2z4bSZG3hDp59FcWlharW7_cVyiyDIoWmw7Sy91F-6cs8aIpnP4s4mkokhZpIyfEkT_Y6bDpAo7XH4RcYAEenbq2o_jDOG1CH1hm3NknsU8JAjJiEPcYT_GsUjRIotTHxS6jhyz5oSHLs5JiFwjfW_oSbTi6JNeVJ9dzpFqmiMZYYORRqc6Gg-yhu745xBrfL-i8xXvCuZnGkKhOHI4MeMGMyb_AvbMxUTkj3wUzyjqmlU53VY4nstjRpTEfDfG5FLnbpLq48ShFp2eGY19FNyFuj3bDWaJtNSIIvzrKlhvI585haQeJjiMxVr72YzpzICA4bgBCseADn7tE2V66jvkWb1VGcXmIPiGKT0H5ETjMrIZm2FS2UjGk1N5ywBEp3MVC9MxTbwn2uQ-gyR6e7hFxUL_aFsl5_AFaKRFBSiKK059bWWDkYPxzVEreb0dynxljJM5Z6UPUfKIVhURH22FdEcltUyDlX0F1igqkYCYX0GxDVJI-xpgTnt9JkJa4QdfQ1LF7CqnJpcBTdyoB9LCr4HBLT-x92bh2DvOJOrUzq_clskU4qBQ7FjdFxAB2Rh0FLkSqws9ZRcA9m5gRdPug8AtfF50A_fL3wwhZMiz5UQr3ZB7UwN2EtCvCVht77g1zN7f33SZwkGHPDbgEehuI8iGRHSgjxDPkVR7sBMk0ac9-3bB4BFYmwY7lSjLgFdF6679xB9PVhXThRdW2koteADxp7Dff5ODOO2BYlUWSeGDZ_jh8cJsfMMpxxxuzYvPiLVKUnW5JVQngzTRVsSim5opIeQaTSPIrkbMloH_wmOwSK6OcmX-dsYt5eZFFWGZ68ijCc_Ww62E1UKAOnGU118mFOk6sy-erag39zdvODGjaOUaXCpXUDmyegjrXPlEsW74GHEkEoKhgqqVkMHImwHXlJRmMYKoDDBoIEY2EM_MjCRCp6kXfLDuBMXQOsP_9RHYIEyE69qxWYJZBtYsof-GcwTlDr4A__kK9pHVUxy5h4OnMMveMoJzrov42j4Xg-_FEsj1AVI4CFtUmbWOyeA4gQkIfVmIkYLyUS6UR5OICFNNy2wcDrdu763d9dC2f3Q4sHHg6h3LYPDJnwnFthC1Ei3JpQJt7bACBYBoz0yPhc_miQGl3A05v2dZcFkdAUoHX7HL1B6par9zYsqqIbtWPEYaCB9Av0Y_L_HBAYIZ0uAGVJN5ORvtX-vcecsbbfE48gReOXtwraKrV1IPbBjv5YLbABAGG94hHg6PBvuLA5eDpLS58Kz8XD-iaKF0uml8MY3qy8AnRHHR0WgeXnXWk_moKZ6JBuIC6zpu2G900mo2rvx9ayzpPsq4mpdsu1S3dC6KlGd3FPaQ_RZ72YKrK-dmg4wKISD2dZ0eGUQJcygK7zgd3AOJHyQx2EDtLAVz2GIGlCT70Ri2zqQzzb-wE6EUPb-hmLMq1I3I0FwweEQjy2WIV4EZq2Sw0qLONld1civYeUZEJgeITx4Ys4-1Mxvue4VpibIgiSU4XD0BbAx6U45_uWetXP9wbQwPpgpdGuaw6xRuih2YZX1vXs0Oz8-I_eF1CtxF9RXmGDJvqgt4IuJudGvrHhXbUdtpm7W4rRu8NGB1v5UpEvpRVc16KBmMT-A3meL4_EUN6hkXz4Mr5hyB0kqhWIfPBNt361uu3LpcsH1bGsea9TobuyhAgRgB1JvuPe87a; Identity.ExternalC2=TIDzYQDyXG1DCxwXRfU5k2g9dbJW1gokECfZshQugT5e9CoTjWlsDxS5Zn80tQl69A0SgdL4OtwgVfWmvjtC6JJRGrUoz4WkLF8rn2D1vU88dE-aEBQ1D-cgCjMuTaF4P5bb6bjmxaZk37bBJS6DTe1rcmesPxklu9yP9gD9KoHq6UpjTP5JyjPqYPrw5ybC6SstoVJeDh5ho49gg99e-SA3nVKRspYlG4; pws=CfDJ8PByodJIE6BLt528%2F9yXbQ090m7CdjC2HKxihFrbEeiEJgemR3ouBKUohirrzhrLi29Iry8YYjwJ01J9tqTOhbdgII6uuex4s1jDRjdDGYABUkfsr2QR0Opolc2uMHln2utUgUIz2a9B6mg8MbHyfDBqZf3rzRkBQpT9uALN3D1p; $$A_U_ID=49a44a48-ed35-4bfe-bb0f-f84524b3a75b; TiPMix=1.7368730481622907; x-ms-routing-name=self; pwa=CfDJ8PByodJIE6BLt528_9yXbQ3EB9XYMYZG1l8NH5cZSc1R9BRDOfJfSnu4WbEIf5dnBvZILxRljT6LL5nqNdEO3OtapMnH8i-7wU6jBAuoUT4TSnD7AEXjMuyqff0AlTIeaQpBXoG1ABznREa_STHU5I251b-JGKO6L2d4hJ28VoVvYo-YEpdp27reZhBFOU1bdYCDUKYct0HycOBatvHuoRTIzHG80oK8rCSQ2CKMZMIPwtxE7uxLV6TWpQbjTIiT-AfdOI4tYs9PXva6Kt5XherV5MUHorEY-ok7yEmDoZXdpIEUKjvWNYDVj01-CHBZ_gUdO2yrseANAY6-Ir92IfN0_H0N6I-iGzzj7tUlv6LQxyMN_rDVSodBigfD642yiMT5Omxf4OyHBwU8V6F8AWrmnc1lQq4RQ8gRFDd0TFWEq9CEtLeRpjwkR9AopY7WVdPcpzEj_LF1Y6lJF3SWKtBwUIouwUO9FqN8LSBMwF2euPkp8E43jbMJLi8I5DtZjtFmjo3ZgzexXjS_yoMZ-NPm7fpaiHsSODY1osyiUgFD01CW4I0N-uYa_X8-a_tS2pSFLlAiMwbud1QnRWzZTxWQ9L1sIMkpvLLOF6KvVLe0H2y3hPvZwJpKgUxyzrIXY1vsZxWw3YQqewsW1a8cvhEam_0Y0U_xYPaFOL4BgkPfmxRcfUL-o20wDN0TNdUC5QbOQh82RuVFQT4YeUxnF53HOIAsdgvgvYP4fPR17LiT2fYcok8GX4CjY8_1cFpcpOSUndTlExHxUxDZB0x8zmGBHfN_8tpNy1m34kmUMU4HAsXyGjZcB6MCIFbco9Wh-ivXcDNO8luuOHL4mtqqGQHSsa0ZwIvbXr9Ll8qE4BMyEM4pQz7GWdJvVcUMS1vOp6oWx3_98jXnNjxvdeq8JpeRJJ7mzFv6e70k832k258OHqDbSpIzrRrtjke_aNz7G4ksKtwrYSJA96rqltkuFW4; ph_phc_FItzF9gSMWU3vk8no368BnUuVqhnOk222NachQaLs2w_posthog=%7B%22distinct_id%22%3A%22gergo.bacskai%40datamc.com%22%2C%22%24sesid%22%3A%5B1757241611865%2C%22019923c2-fed9-7f4b-b4ba-a672f19a7b7c%22%2C1757241605849%5D%2C%22%24epp%22%3Atrue%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22https%3A%2F%2Fwww.projectworks.com%2F%22%2C%22u%22%3A%22https%3A%2F%2Fprojectworksapp.com%2FAccount%2FLogin%22%7D%7D\";\n\nreturn {worklfowStaticData}"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -84,7 +84,8 @@
         176
       ],
       "id": "297e540f-7f0c-4972-a1de-e4662b0ad769",
-      "name": "Projectworks Cookie"
+      "name": "Projectworks Cookie",
+      "disabled": true
     },
     {
       "parameters": {
@@ -114,7 +115,8 @@
         176
       ],
       "typeVersion": 4.2,
-      "alwaysOutputData": false
+      "alwaysOutputData": false,
+      "disabled": true
     },
     {
       "parameters": {
@@ -240,7 +242,8 @@
           "id": "nWloeuENyaWwUL6K",
           "name": "Devops Token"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -443,7 +446,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -587,7 +590,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -721,7 +724,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -768,8 +771,8 @@
       "name": "Select rows from a table",
       "credentials": {
         "postgres": {
-          "id": "HZrppzqmklIpMmON",
-          "name": "Postgres account"
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -978,7 +981,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -1290,7 +1293,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       },
       "disabled": true
@@ -1372,8 +1375,8 @@
       "name": "Select rows from a table1",
       "credentials": {
         "postgres": {
-          "id": "HZrppzqmklIpMmON",
-          "name": "Postgres account"
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -1483,7 +1486,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -1613,7 +1616,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -1889,7 +1892,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -2035,7 +2038,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -2160,8 +2163,8 @@
       "name": "U projects",
       "credentials": {
         "postgres": {
-          "id": "HZrppzqmklIpMmON",
-          "name": "Postgres account"
+          "id": "X11V0xBEimJlSfgL",
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -2329,7 +2332,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -2520,7 +2523,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -3220,7 +3223,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "5d27f8a3-9307-4235-b0e8-9189ae031e07",
+  "versionId": "3ca09584-1c36-49b8-b3ba-2afd6fe56197",
   "triggerCount": 1,
   "tags": [
     {
