@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-08T00:55:50.812Z",
-  "updatedAt": "2025-09-07T10:53:41.373Z",
+  "updatedAt": "2025-09-09T00:32:59.820Z",
   "id": "LjkYMC2y52Jco72g",
   "name": "DataMC Project Info collection",
   "active": true,
@@ -84,8 +84,7 @@
         176
       ],
       "id": "297e540f-7f0c-4972-a1de-e4662b0ad769",
-      "name": "Projectworks Cookie",
-      "disabled": true
+      "name": "Projectworks Cookie"
     },
     {
       "parameters": {
@@ -115,8 +114,7 @@
         176
       ],
       "typeVersion": 4.2,
-      "alwaysOutputData": false,
-      "disabled": true
+      "alwaysOutputData": false
     },
     {
       "parameters": {
@@ -242,8 +240,7 @@
           "id": "nWloeuENyaWwUL6K",
           "name": "Devops Token"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -3223,7 +3220,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "3ca09584-1c36-49b8-b3ba-2afd6fe56197",
+  "versionId": "7c4638d4-ff94-4475-877e-adc8e7b5c78b",
   "triggerCount": 1,
   "tags": [
     {
