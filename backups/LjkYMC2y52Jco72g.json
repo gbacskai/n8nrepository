@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-08T00:55:50.812Z",
-  "updatedAt": "2025-09-09T00:32:59.820Z",
+  "updatedAt": "2025-09-15T00:34:49.433Z",
   "id": "LjkYMC2y52Jco72g",
   "name": "DataMC Project Info collection",
   "active": true,
@@ -176,7 +176,7 @@
     },
     {
       "parameters": {
-        "url": "=https://datamc.projectworksapp.com/Project/Budget/{{ $json.data.id }}",
+        "url": "=https://datamc.projectworksapp.com/Project/Budgets/{{ $json.data.id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -2581,7 +2581,7 @@
       "credentials": {
         "httpHeaderAuth": {
           "id": "hFhObbZejf9othAX",
-          "name": "Header Auth account"
+          "name": "AWS Sandbox Authentication"
         }
       }
     },
@@ -3220,7 +3220,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "7c4638d4-ff94-4475-877e-adc8e7b5c78b",
+  "versionId": "41874dfc-ada0-4a89-8313-5fbe8cad6cf0",
   "triggerCount": 1,
   "tags": [
     {
