@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-11T03:55:47.119Z",
-  "updatedAt": "2025-08-18T05:36:35.732Z",
+  "updatedAt": "2025-10-07T11:05:10.993Z",
   "id": "1zHb2baSRH85ujYA",
   "name": "U workitem with object and blocked",
   "active": true,
@@ -54,7 +54,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -100,7 +100,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -141,8 +141,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        432,
-        -1344
+        464,
+        -1392
       ],
       "id": "0930e66d-35ac-44cf-9cea-1e9928c7267d",
       "name": "Get workitems comments",
@@ -150,7 +150,7 @@
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -163,8 +163,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        1552,
-        -1232
+        1648,
+        -1280
       ],
       "id": "146aff02-0205-4dee-aba1-7c75275c2108",
       "name": "AI Agent"
@@ -184,8 +184,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        1568,
-        -1008
+        1664,
+        -1056
       ],
       "id": "63c9219a-0108-4866-9c22-e60821d30f86",
       "name": "OpenAI Chat Model",
@@ -205,8 +205,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        1104,
-        -1232
+        1200,
+        -1280
       ],
       "id": "438038a8-bb7a-4225-8795-3cafb9672009",
       "name": "Merge1"
@@ -237,8 +237,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        880,
-        -1344
+        912,
+        -1392
       ],
       "id": "f97073f3-94b5-4e0b-93e2-93bfd1780357",
       "name": "Aggregate"
@@ -250,8 +250,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        656,
-        -1344
+        688,
+        -1392
       ],
       "id": "9cc48d2e-718d-44b3-ba4c-c3aa442159bd",
       "name": "Code"
@@ -270,8 +270,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        880,
-        -1024
+        960,
+        -1200
       ],
       "id": "1eff8d3b-3d6c-4e7f-814e-44c46c0af933",
       "name": "Aggregate1"
@@ -283,8 +283,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        656,
-        -1024
+        736,
+        -1200
       ],
       "id": "cdb84960-c1e2-4f61-ab99-c1a3b2c0b67a",
       "name": "Code1"
@@ -296,8 +296,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1904,
-        -1232
+        2000,
+        -1280
       ],
       "id": "d1123620-5fbf-410b-b259-e8ff613773d7",
       "name": "Code2"
@@ -539,15 +539,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        2928,
-        -976
+        3024,
+        -1024
       ],
       "id": "50943a5f-c284-4890-8f54-77b1b15bed11",
       "name": "Get workitems from Azure Devops1",
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -580,15 +580,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        432,
-        -1024
+        512,
+        -1200
       ],
       "id": "945de038-3657-4251-9495-62c34f2dd5cb",
       "name": "Get WOM Objects",
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -665,15 +665,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        208,
-        -1024
+        288,
+        -1200
       ],
       "id": "6f564a4a-94a5-4a74-bbf8-7efb9d26d745",
       "name": "select Projects1",
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -705,8 +705,8 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        2128,
-        -1232
+        2224,
+        -1280
       ],
       "id": "da5ccc92-640f-4cfd-8a47-f554fe9ba56e",
       "name": "Blocked"
@@ -720,8 +720,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        2352,
-        -1232
+        2448,
+        -1280
       ],
       "id": "ca464239-2d32-42aa-a286-c0392737f51f",
       "name": "AI Agent1"
@@ -741,8 +741,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        2432,
-        -1008
+        2528,
+        -1056
       ],
       "id": "660ed016-d375-4e51-b1c4-425168a11e91",
       "name": "OpenAI Chat Model1",
@@ -977,15 +977,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        2928,
-        -1232
+        3024,
+        -1280
       ],
       "id": "b9577d29-78a6-4216-9bdc-94621072a84f",
       "name": "Get workitems from Azure Devops2",
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -996,8 +996,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2704,
-        -1232
+        2800,
+        -1280
       ],
       "id": "b8649d34-8b3f-458a-8078-f74a752ab40c",
       "name": "Code3"
@@ -1009,8 +1009,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3152,
-        -1152
+        3248,
+        -1200
       ],
       "id": "eab59f09-c15e-4370-be8a-afbf59ee3674",
       "name": "Code4"
@@ -1239,15 +1239,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        2928,
-        -1472
+        3024,
+        -1520
       ],
       "id": "45077d70-144d-4c2e-9725-764a7e0e9433",
       "name": "Get workitems from Azure Devops3",
       "credentials": {
         "postgres": {
           "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
+          "name": "Postgres gbacskai"
         }
       }
     },
@@ -1278,8 +1278,8 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        2704,
-        -1472
+        2800,
+        -1520
       ],
       "id": "57848085-c2d9-4865-8863-fc06f31082ab",
       "name": "Not Blocked"
@@ -1321,33 +1321,13 @@
     },
     {
       "parameters": {
-        "tableName": "n8n.n8n_chat_histories"
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
-      "typeVersion": 1.3,
-      "position": [
-        1696,
-        -1008
-      ],
-      "id": "7d6144d9-ec3a-4652-8e55-b5d9bf9e504c",
-      "name": "Postgres Chat Memory",
-      "credentials": {
-        "postgres": {
-          "id": "X11V0xBEimJlSfgL",
-          "name": "Postgres account 2"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
         "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.sessionId = $input.item.json.PROJECT_ID;\n}\n\nreturn $input.all();"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1328,
-        -1232
+        1424,
+        -1280
       ],
       "id": "5688aac0-2b5c-456f-8b5c-a17191660a7d",
       "name": "dessionId"
@@ -1671,17 +1651,6 @@
         ]
       ]
     },
-    "Postgres Chat Memory": {
-      "ai_memory": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "dessionId": {
       "main": [
         [
@@ -1713,7 +1682,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "7cf5bed6-cc2b-46eb-a280-63994dbb70e9",
+  "versionId": "a486193d-4f3a-4cfc-9674-fd749e063b51",
   "triggerCount": 1,
   "tags": [
     {
