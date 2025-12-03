@@ -1,6 +1,6 @@
 {
-  "createdAt": "2025-09-09T09:00:08.801Z",
   "updatedAt": "2025-09-09T09:22:41.856Z",
+  "createdAt": "2025-09-09T09:00:08.801Z",
   "id": "ZqCXLW4YF1GYGmPa",
   "name": "Docflow4",
   "active": false,
@@ -139,18 +139,19 @@
   },
   "pinData": {},
   "versionId": "30267c66-bc01-4334-ac00-9f7f1dbb3b73",
+  "versionCounter": 1,
   "triggerCount": 0,
   "tags": [],
   "shared": [
     {
-      "createdAt": "2025-09-09T09:00:08.801Z",
       "updatedAt": "2025-09-09T09:00:08.801Z",
+      "createdAt": "2025-09-09T09:00:08.801Z",
       "role": "workflow:owner",
       "workflowId": "ZqCXLW4YF1GYGmPa",
       "projectId": "FlFnx4GL1IzMIs6I",
       "project": {
-        "createdAt": "2025-08-15T14:30:31.525Z",
         "updatedAt": "2025-08-15T14:30:55.517Z",
+        "createdAt": "2025-08-15T14:30:31.525Z",
         "id": "FlFnx4GL1IzMIs6I",
         "name": "Gergo Bacskai <gbacskai@gmail.com>",
         "type": "personal",

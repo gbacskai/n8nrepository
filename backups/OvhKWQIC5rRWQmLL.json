@@ -1,6 +1,6 @@
 {
-  "createdAt": "2025-08-15T16:00:02.030Z",
   "updatedAt": "2025-08-19T04:38:54.463Z",
+  "createdAt": "2025-08-15T16:00:02.030Z",
   "id": "OvhKWQIC5rRWQmLL",
   "name": "Meeting Summarizer",
   "active": true,
@@ -267,18 +267,19 @@
   },
   "pinData": {},
   "versionId": "0a415243-ca5e-4f04-a85d-d3afc056eb4e",
+  "versionCounter": 8,
   "triggerCount": 1,
   "tags": [],
   "shared": [
     {
-      "createdAt": "2025-08-15T16:00:02.030Z",
       "updatedAt": "2025-08-15T16:00:02.030Z",
+      "createdAt": "2025-08-15T16:00:02.030Z",
       "role": "workflow:owner",
       "workflowId": "OvhKWQIC5rRWQmLL",
       "projectId": "FlFnx4GL1IzMIs6I",
       "project": {
-        "createdAt": "2025-08-15T14:30:31.525Z",
         "updatedAt": "2025-08-15T14:30:55.517Z",
+        "createdAt": "2025-08-15T14:30:31.525Z",
         "id": "FlFnx4GL1IzMIs6I",
         "name": "Gergo Bacskai <gbacskai@gmail.com>",
         "type": "personal",

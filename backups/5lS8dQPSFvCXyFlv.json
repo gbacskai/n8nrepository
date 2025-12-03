@@ -1,6 +1,6 @@
 {
-  "createdAt": "2025-08-18T05:44:51.322Z",
   "updatedAt": "2025-08-18T07:14:23.027Z",
+  "createdAt": "2025-08-18T05:44:51.322Z",
   "id": "5lS8dQPSFvCXyFlv",
   "name": "My workflow 3",
   "active": false,
@@ -14,18 +14,19 @@
   "meta": null,
   "pinData": {},
   "versionId": "7789fd5b-c149-4113-ba63-23832522c8e2",
+  "versionCounter": 1,
   "triggerCount": 0,
   "tags": [],
   "shared": [
     {
-      "createdAt": "2025-08-18T05:44:51.322Z",
       "updatedAt": "2025-08-18T05:44:51.322Z",
+      "createdAt": "2025-08-18T05:44:51.322Z",
       "role": "workflow:owner",
       "workflowId": "5lS8dQPSFvCXyFlv",
       "projectId": "FlFnx4GL1IzMIs6I",
       "project": {
-        "createdAt": "2025-08-15T14:30:31.525Z",
         "updatedAt": "2025-08-15T14:30:55.517Z",
+        "createdAt": "2025-08-15T14:30:31.525Z",
         "id": "FlFnx4GL1IzMIs6I",
         "name": "Gergo Bacskai <gbacskai@gmail.com>",
         "type": "personal",
